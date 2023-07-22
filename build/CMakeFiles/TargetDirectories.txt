@@ -1,3 +1,0 @@
-C:/Users/30465/Desktop/Explorerss/build/CMakeFiles/Explorerss.elf.dir
-C:/Users/30465/Desktop/Explorerss/build/CMakeFiles/edit_cache.dir
-C:/Users/30465/Desktop/Explorerss/build/CMakeFiles/rebuild_cache.dir
