@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "*.ASM": "a51",
+        "tim.h": "c",
+        "control.h": "c",
+        "oled.h": "c",
+        "encoder.h": "c",
+        "medicinebox.h": "c",
+        "task3.h": "c",
+        "taskmanager.h": "c",
+        "task2.h": "c",
+        "cmath": "c"
+    }
+}
