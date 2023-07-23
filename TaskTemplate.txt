@@ -1,0 +1,14 @@
+File Name: Task3
+Variable: stage
+Stages: 
+ Turn1_3rd
+ WaitForOpenMV_3rd
+ FollowLine1_3rd
+ Turn2_3rd
+ FollowLine2_3rd
+ WaitForMedicineOut_3rd
+ Back_3rd
+ Turn3_3rd
+ FollowLine3_3rd
+ Turn4_3rd
+ FollowLine4_3rd    

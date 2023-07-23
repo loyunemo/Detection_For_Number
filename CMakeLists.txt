@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.2) 
+project(ScripeGenerator LANGUAGES CXX VERSION 1.0) 
+aux_source_directory(./Src/*.* DIR_SRCS )
+include_directories(./Inc)
+add_executable(ScriptGenerator main.cpp Src/ScriptGenerator.cpp)
+add_compile_options(-std=c++11)

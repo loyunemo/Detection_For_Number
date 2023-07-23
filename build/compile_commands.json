@@ -1,0 +1,12 @@
+[
+{
+  "directory": "C:/Users/30465/Desktop/ScriptGenerator/build",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/ScriptGenerator.dir/includes_CXX.rsp -g -o CMakeFiles/ScriptGenerator.dir/main.cpp.obj -c C:/Users/30465/Desktop/ScriptGenerator/main.cpp",
+  "file": "C:/Users/30465/Desktop/ScriptGenerator/main.cpp"
+},
+{
+  "directory": "C:/Users/30465/Desktop/ScriptGenerator/build",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/ScriptGenerator.dir/includes_CXX.rsp -g -o CMakeFiles/ScriptGenerator.dir/Src/ScriptGenerator.cpp.obj -c C:/Users/30465/Desktop/ScriptGenerator/Src/ScriptGenerator.cpp",
+  "file": "C:/Users/30465/Desktop/ScriptGenerator/Src/ScriptGenerator.cpp"
+}
+]
