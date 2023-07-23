@@ -77,8 +77,8 @@ void Mission3Handler(void){
             }
 
             // loop
-            if(mission.turn_direction % 2) turn_flag = Turn(TU_CC, 1);
-            else turn_flag = Turn(TU_CW, 1);
+            if(mission.turn_direction % 2) turn_flag = ForwardTurn(TU_CC);
+            else turn_flag = ForwardTurn(TU_CW);
 
             // end conditions
             if(turn_flag == END){
@@ -161,8 +161,8 @@ void Mission3Handler(void){
             }
 
             // loop
-            if(mission.turn_direction % 2) turn_flag = Turn(TU_CC, 1);
-            else turn_flag = Turn(TU_CW, 1);
+            if(mission.turn_direction % 2) turn_flag = ForwardTurn(TU_CC);
+            else turn_flag = ForwardTurn(TU_CW);
 
             // end conditions
             if(turn_flag == END){
@@ -205,8 +205,8 @@ void Mission3Handler(void){
             }
 
             // loop
-            if(mission.turn_direction % 2) turn_flag = Turn(TU_CW, 1);
-            else turn_flag = Turn(TU_CC, 1);
+            if(mission.turn_direction % 2) turn_flag = ForwardTurn(TU_CW);
+            else turn_flag = ForwardTurn(TU_CC);
 
             // end conditions
             if(turn_flag == END){

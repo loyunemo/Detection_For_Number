@@ -20,7 +20,6 @@ void Mission2Handler(void){
 			// end condition
 			if(turn_flag == END){
 				// end todo 
-				FollowLineClearLineCount();
 				SetMotorOutput(0, 0);
 
 				stage2 ++;
@@ -42,7 +41,6 @@ void Mission2Handler(void){
 			// end conditions
 			if(line_count >= 2){
 				// end todo
-				FollowLineClearLineCount();
 				SetMotorOutput(0, 0);
 
 				stage2 ++;
@@ -82,7 +80,6 @@ void Mission2Handler(void){
 			// end conditions
 			if(line_count >= 1){
 				//end todo
-				FollowLineClearLineCount();
 				SetMotorOutput(0, 0);
 
 				stage2 ++;
@@ -105,7 +102,6 @@ void Mission2Handler(void){
 			// end conditions
 			if(turn_flag){
 				// end todo
-				FollowLineClearLineCount();
 				SetMotorOutput(0, 0);
 
 				stage2 ++;

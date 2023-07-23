@@ -1,0 +1,67 @@
+#ifndef __TASKMANAGER_H__
+#define __TASKMANAGER_H__
+
+#include "MedicineBox.h"
+#include "LED.h"
+#include "openmv.h"
+#include "Functions.h"
+#include "followline.h"
+#include "Task4.h"
+#include "Task5.h"
+#include "followline.h"
+#include "intercom.h"
+
+#include "Task4.h"
+#include "Task5.h"
+
+/*
+房间方位号，对应数组下标
+|  8    |--------------------|  10   |
+|              5      6              |
+|       |-------      -------|       |
+|  7    |      |      |      |  9    |
+               |      |
+       --------        ---------
+               3       4        
+       --------        ---------
+               |       |  
+               |       |
+	     --------        ----------
+		      	   1       2
+	     --------        ----------
+	             |       |
+*/
+/******************************** User's Types ********************************/
+typedef struct{
+	uint8_t mission_number; // 第几个测试点(0/4/5)
+	uint8_t target_number; // 去几号房间
+	uint8_t location_number; // 去几号位
+	uint8_t turn_direction; // 仅远端有用，最后路口1左转2右转
+}Mission_t;
+
+typedef enum{
+	WaitForCar1Message = 0,
+	WaitForOpenMV,
+	WaitForMedicineIn,
+	OpenLoopForward,
+	OpenMVStartSearching,
+	FollowLine,
+	ChooseBranch,
+}Mission_Stage_ALL;
+
+/*****************************User's Functions *********************************/
+void TaskManager_Init(void);
+void TaskManagerCallBack(void);	
+void FirstTurn(void);
+void MissionWait_ms(uint32_t n);
+void MissionWait_msCallBack(void);
+
+/***************************Extern Variables**************************/
+extern Mission_t mission;
+extern uint8_t room_sequence[6];
+extern Mission_Stage_ALL stage0, last_stage0;
+extern uint8_t mission_wait_flag;
+extern uint32_t mission_wait_count;
+extern uint8_t turn_flag;
+
+#endif

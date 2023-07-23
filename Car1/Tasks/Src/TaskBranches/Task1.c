@@ -20,7 +20,6 @@ void Mission1Handler(void){
 			// end condition
 			if(turn_flag == END){
 				// end todo 
-				FollowLineClearLineCount();
 				SetMotorOutput(0, 0);
 
 				stage1 ++;
@@ -37,11 +36,11 @@ void Mission1Handler(void){
 
 			// loop
 			FollowLinePIDCallBack(21);
+			
 
 			// end conditions
-			if(line_count >= 1){
+			if(FollowLineForLengthCallBack(21,37000)){
 				// end todo
-				FollowLineClearLineCount();
 				SetMotorOutput(0, 0);
 
 				stage1 ++;
@@ -79,7 +78,6 @@ void Mission1Handler(void){
 			// end conditions
 			if(line_count >= 1){
 				//end todo
-				FollowLineClearLineCount();
 				SetMotorOutput(0, 0);
 
 				stage1 ++;
@@ -102,7 +100,6 @@ void Mission1Handler(void){
 			// end conditions
 			if(turn_flag == END){
 				// end todo
-				FollowLineClearLineCount();
 				SetMotorOutput(0, 0);
 
 				stage1 ++;
@@ -115,7 +112,7 @@ void Mission1Handler(void){
 				last_stage1 = stage1;
 
 				// stageInit
-
+				FollowLineClearLineCount();
 			}
 
 			// loop
@@ -124,7 +121,6 @@ void Mission1Handler(void){
 			// end conditions
 			if(line_count >= 1){
 				// end todo
-				FollowLineClearLineCount();
 				SetMotorOutput(0, 0);
 
 				stage1 ++;

@@ -58,4 +58,7 @@ CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj: \
  C:/Users/30465/Desktop/Explorerss/Car1/Dependences/Inc/oled.h \
  C:/Users/30465/Desktop/Explorerss/Car1/Core/Inc/i2c.h \
  C:/Users/30465/Desktop/Explorerss/Car1/Dependences/Inc/Encoder.h \
- C:/Users/30465/Desktop/Explorerss/Car1/Tasks/Inc/Functions.h
+ C:/Users/30465/Desktop/Explorerss/Car1/Tasks/Inc/Functions.h \
+ e:\12.2\ mpacbti-bet1\arm-none-eabi\include\stdlib.h \
+ e:\12.2\ mpacbti-bet1\arm-none-eabi\include\machine\stdlib.h \
+ e:\12.2\ mpacbti-bet1\arm-none-eabi\include\alloca.h

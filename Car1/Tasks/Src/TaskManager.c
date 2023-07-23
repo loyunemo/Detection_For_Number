@@ -15,6 +15,7 @@ void JudgeBranch(void); 		// 判断进入哪个分支
 
 // void 
 
+
 /*************************macro variable***********************************/
 Mission_t mission;
 Mission_Stage_ALL stage0, last_stage0;
@@ -29,7 +30,7 @@ void TaskManager_Init(void)
 	turn_flag = 0;
 	mission_wait_flag = 0;
 	mission.mission_number = 0;
-	stage0 = WaitForOpenMV;
+	stage0 = 0;
 	last_stage0 = EnquireCarNum;
 }
 
@@ -119,6 +120,25 @@ void Mission0Handler(void){
 				stage0++;
 			}
 			break;
+			
+		case OpenLoopForward: 
+			// stage initiate
+			if(stage0 != last_stage0){
+				last_stage0 = stage0;
+				
+				// initiate todo
+			}
+
+			// loop
+
+			// end conditions
+			if(SetMotorOutputEncoder(23000,23000,1000)) {
+				// end todo
+				MotorOutputPIDClear();
+
+				stage0++;
+			}
+			break;
 
 		case OpenMVStartSearching: 
 			// stage initiate
@@ -152,7 +172,7 @@ void Mission0Handler(void){
 			FollowLinePIDCallBack(21);
 
 			// end conditions
-			if(line_count != last_line_count && (!openmv_wait_switch || mission.target_number <= 2)){
+			if(line_count != last_line_count && (!openmv_wait_switch||mission.target_number<=2)){
 				// end todo
 
 				stage0 ++;
@@ -232,9 +252,9 @@ void JudgeBranch(void){ // 判断进入哪个分支
 
 void FirstTurn(void){
 	if(mission.location_number % 2){ // 如果房间位号为奇数
-		turn_flag = Turn(TU_CC, 1);
+		turn_flag = ForwardTurn(TU_CC);
 	}
 	else {
-		turn_flag = Turn(TU_CC, 1);
+		turn_flag = ForwardTurn(TU_CW);
 	}
 }

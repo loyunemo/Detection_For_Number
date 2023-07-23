@@ -12,22 +12,14 @@ uint8_t debug_stop;
 BUTTON left_button, right_button;
 extern PIDTypeDef hpid_lmotor, hpid_rmotor;
 
-uint64_t fps=0;
-
-/*
-Kp=1.8 Ki=0.8 Kd=0.1
-Kp=1.75 Ki=1.15 Kd=0.5
-Kp=2 Ki=0.3 Kd=0.1
-*/
+uint64_t frames=0;//Control运行次数计数
 
 int16_t Loutput1,Routput1;
 
 void ControlInit(void){
-	// MPU6050_Init(&hi2c2);
-    GrayScalerCallBack();
-    EncoderInit();
+    Encoder_Init();
     LED_Init();
-    MotorInit();
+    Motor_Init();
     PID_DeInit(&hpid_lmotor);
     PID_DeInit(&hpid_rmotor);
     OLED_Init(&hi2c2);
@@ -35,7 +27,7 @@ void ControlInit(void){
 	Intercom_Init();
 	TaskManager_Init();
     FollowLinePID_Init();
-	Path_on=1;
+	
     HAL_TIM_Base_Start_IT(&htim4);
 
     debug_stop = left_button.button = left_button.last_button = right_button.button = right_button.last_button = 0;
@@ -53,16 +45,15 @@ void Control(void){
     if(!left_button.last_button && left_button.button) debug_stop = 0;
     else if(!right_button.last_button && right_button.button) debug_stop = 1;
 #endif
-    if(!debug_stop){
-        if(right_button.button);
-			fps++;
-        EncoderCallBack();
-        GrayScalerCallBack();
+    if(!debug_stop) {
+		
+		if(right_button.button);
+		    frames++;
+		EncoderCallBack();
+		GrayScalerCallBack();
 		IntercomCallBack();
-        MedicineBoxCallBack();
-
+		MedicineBoxCallBack();
 		TaskManagerCallBack();
-        
     }
     else{
         EncoderCallBack();

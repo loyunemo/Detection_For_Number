@@ -65,6 +65,9 @@ CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj: \
  C:/Users/30465/Desktop/Explorerss/Car1/Tasks/Inc/followline.h \
  C:/Users/30465/Desktop/Explorerss/Car1/Tasks/Inc/Functions.h \
  C:/Users/30465/Desktop/Explorerss/Car1/Tasks/Inc/FollowLine.h \
+ e:\12.2\ mpacbti-bet1\arm-none-eabi\include\stdlib.h \
+ e:\12.2\ mpacbti-bet1\arm-none-eabi\include\machine\stdlib.h \
+ e:\12.2\ mpacbti-bet1\arm-none-eabi\include\alloca.h \
  C:/Users/30465/Desktop/Explorerss/Car1/Tasks/Inc/TaskManager.h \
  C:/Users/30465/Desktop/Explorerss/Car1/Core/Inc/stm32f1xx_it.h \
  C:/Users/30465/Desktop/Explorerss/Car1/Core/Inc/main.h \

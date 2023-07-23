@@ -103,10 +103,19 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		OLED_ShowVariable(0,"Path_now",Path_now);
-		OLED_ShowVariable(1,"fps",fps);
-		OLED_ShowVariable(2,"encoderL",encoderL_10ms);
-		OLED_ShowVariable(3,"encoderR",encoderR_10ms);
+		extern Mission_Stage_ALL stage0;
+		OLED_ShowVariable(0,"stage0",stage0);
+		OLED_ShowVariable(1,"stage1",stage1);
+		OLED_ShowVariable(2,"mission_number",mission.mission_number);
+//		OLED_ShowVariable(1,"fps",fps);
+//		OLED_ShowVariable(2,"encoderL",encoderL_10ms);
+//		OLED_ShowVariable(3,"encoderR",encoderR_10ms);
+		extern int16_t Loutput,Routput;
+		OLED_ShowVariable(4,"Loutput",Loutput);
+		OLED_ShowVariable(5,"Routput",Routput);
+		OLED_ShowVariable(6,"line_count",line_count);
+		extern uint8_t openmv_rxbuffer[OPENMV_RXBUF_MAXLEN];
+		OLED_ShowVariable(7,"openmv_rxbuffer",openmv_rxbuffer[0]);
   }
   /* USER CODE END 3 */
 }

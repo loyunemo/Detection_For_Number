@@ -245,6 +245,8 @@ Discarded input sections
  .text          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
  .data          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
  .bss           0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+ .text.Encoder_DeInit
+                0x00000000       0x3c CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
  .text          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
  .data          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
  .bss           0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
@@ -254,7 +256,7 @@ Discarded input sections
  .text          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
  .data          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
  .bss           0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
- .text.MedicineBoxInit
+ .text.MedicineBox_Init
                 0x00000000        0xc CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
  .text          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
  .data          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
@@ -1224,11 +1226,10 @@ Discarded input sections
  .text          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
  .data          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
  .bss           0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
- .text.MotorOutputPIDClear
-                0x00000000       0x18 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
  .text.GoPath   0x00000000      0x14c CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
  .bss.Path_turn_flag
                 0x00000000        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+ .data.Path_on  0x00000000        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
  .bss.Path_act  0x00000000        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
  .data.Path     0x00000000       0x14 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
  .text          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
@@ -1243,8 +1244,6 @@ Discarded input sections
  .text          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
  .data          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
  .bss           0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
- .bss.last_stage4
-                0x00000000        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
  .text          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
  .data          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
  .bss           0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
@@ -1256,12 +1255,6 @@ Discarded input sections
  .text          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
  .data          0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
  .bss           0x00000000        0x0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
- .text.FollowLineForLengh_Init
-                0x00000000        0xc CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
- .text.FollowLineForLengthCallBack
-                0x00000000       0x40 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
- .bss.encoder_count
-                0x00000000        0x2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
  .bss.hpid_rmotor_follow
                 0x00000000        0x4 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
  .bss.hpid_lmotor_follow
@@ -1975,7 +1968,7 @@ LOAD e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/c
                 0x08000000                g_pfnVectors
                 0x0800010c                        . = ALIGN (0x4)
 
-.text           0x08000110     0x5690
+.text           0x08000110     0x5940
                 0x08000110                        . = ALIGN (0x4)
  *(.text)
  .text          0x08000110      0x378 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
@@ -2089,617 +2082,632 @@ LOAD e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/c
  .text.SystemClock_Config
                 0x08001304       0x64 CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
                 0x08001304                SystemClock_Config
- .text.main     0x08001368       0xa0 CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
+ .text.main     0x08001368       0xec CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
                 0x08001368                main
  .text.HAL_MspInit
-                0x08001408       0x44 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj
-                0x08001408                HAL_MspInit
+                0x08001454       0x44 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj
+                0x08001454                HAL_MspInit
  .text.NMI_Handler
-                0x0800144c        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x0800144c                NMI_Handler
+                0x08001498        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x08001498                NMI_Handler
  .text.HardFault_Handler
-                0x0800144e        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x0800144e                HardFault_Handler
+                0x0800149a        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x0800149a                HardFault_Handler
  .text.MemManage_Handler
-                0x08001450        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001450                MemManage_Handler
+                0x0800149c        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x0800149c                MemManage_Handler
  .text.BusFault_Handler
-                0x08001452        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001452                BusFault_Handler
+                0x0800149e        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x0800149e                BusFault_Handler
  .text.UsageFault_Handler
-                0x08001454        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001454                UsageFault_Handler
+                0x080014a0        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080014a0                UsageFault_Handler
  .text.SVC_Handler
-                0x08001456        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001456                SVC_Handler
+                0x080014a2        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080014a2                SVC_Handler
  .text.DebugMon_Handler
-                0x08001458        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001458                DebugMon_Handler
+                0x080014a4        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080014a4                DebugMon_Handler
  .text.PendSV_Handler
-                0x0800145a        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x0800145a                PendSV_Handler
+                0x080014a6        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080014a6                PendSV_Handler
  .text.SysTick_Handler
-                0x0800145c        0x8 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x0800145c                SysTick_Handler
+                0x080014a8        0x8 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080014a8                SysTick_Handler
  .text.TIM2_IRQHandler
-                0x08001464       0x10 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001464                TIM2_IRQHandler
+                0x080014b0       0x10 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080014b0                TIM2_IRQHandler
  .text.TIM3_IRQHandler
-                0x08001474       0x10 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001474                TIM3_IRQHandler
+                0x080014c0       0x10 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080014c0                TIM3_IRQHandler
  .text.TIM4_IRQHandler
-                0x08001484       0x10 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001484                TIM4_IRQHandler
+                0x080014d0       0x10 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080014d0                TIM4_IRQHandler
  .text.USART1_IRQHandler
-                0x08001494       0x10 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001494                USART1_IRQHandler
+                0x080014e0       0x10 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080014e0                USART1_IRQHandler
  .text.SystemInit
-                0x080014a4        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
-                0x080014a4                SystemInit
- *fill*         0x080014a6        0x2 
+                0x080014f0        0x2 CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
+                0x080014f0                SystemInit
+ *fill*         0x080014f2        0x2 
  .text.MX_TIM2_Init
-                0x080014a8       0x64 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
-                0x080014a8                MX_TIM2_Init
+                0x080014f4       0x64 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+                0x080014f4                MX_TIM2_Init
  .text.MX_TIM3_Init
-                0x0800150c       0x64 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
-                0x0800150c                MX_TIM3_Init
+                0x08001558       0x64 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+                0x08001558                MX_TIM3_Init
  .text.HAL_TIM_Encoder_MspInit
-                0x08001570       0xc0 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
-                0x08001570                HAL_TIM_Encoder_MspInit
+                0x080015bc       0xc0 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+                0x080015bc                HAL_TIM_Encoder_MspInit
  .text.HAL_TIM_Base_MspInit
-                0x08001630       0x40 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
-                0x08001630                HAL_TIM_Base_MspInit
+                0x0800167c       0x40 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+                0x0800167c                HAL_TIM_Base_MspInit
  .text.HAL_TIM_MspPostInit
-                0x08001670       0x50 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
-                0x08001670                HAL_TIM_MspPostInit
+                0x080016bc       0x50 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+                0x080016bc                HAL_TIM_MspPostInit
  .text.MX_TIM4_Init
-                0x080016c0       0xc0 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
-                0x080016c0                MX_TIM4_Init
+                0x0800170c       0xc0 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+                0x0800170c                MX_TIM4_Init
  .text.MX_USART1_UART_Init
-                0x08001780       0x34 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
-                0x08001780                MX_USART1_UART_Init
+                0x080017cc       0x34 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
+                0x080017cc                MX_USART1_UART_Init
  .text.HAL_UART_MspInit
-                0x080017b4       0x88 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
-                0x080017b4                HAL_UART_MspInit
+                0x08001800       0x88 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
+                0x08001800                HAL_UART_MspInit
  .text.Reset_Handler
-                0x0800183c       0x48 CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
-                0x0800183c                Reset_Handler
+                0x08001888       0x48 CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
+                0x08001888                Reset_Handler
  .text.Default_Handler
-                0x08001884        0x2 CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
-                0x08001884                RTC_Alarm_IRQHandler
-                0x08001884                EXTI2_IRQHandler
-                0x08001884                TIM1_CC_IRQHandler
-                0x08001884                PVD_IRQHandler
-                0x08001884                EXTI3_IRQHandler
-                0x08001884                EXTI0_IRQHandler
-                0x08001884                I2C2_EV_IRQHandler
-                0x08001884                ADC1_2_IRQHandler
-                0x08001884                SPI1_IRQHandler
-                0x08001884                TAMPER_IRQHandler
-                0x08001884                DMA1_Channel4_IRQHandler
-                0x08001884                USART3_IRQHandler
-                0x08001884                RTC_IRQHandler
-                0x08001884                DMA1_Channel7_IRQHandler
-                0x08001884                CAN1_RX1_IRQHandler
-                0x08001884                I2C1_EV_IRQHandler
-                0x08001884                DMA1_Channel6_IRQHandler
-                0x08001884                RCC_IRQHandler
-                0x08001884                TIM1_TRG_COM_IRQHandler
-                0x08001884                DMA1_Channel1_IRQHandler
-                0x08001884                Default_Handler
-                0x08001884                EXTI15_10_IRQHandler
-                0x08001884                EXTI9_5_IRQHandler
-                0x08001884                SPI2_IRQHandler
-                0x08001884                DMA1_Channel5_IRQHandler
-                0x08001884                EXTI4_IRQHandler
-                0x08001884                USB_LP_CAN1_RX0_IRQHandler
-                0x08001884                USB_HP_CAN1_TX_IRQHandler
-                0x08001884                DMA1_Channel3_IRQHandler
-                0x08001884                TIM1_UP_IRQHandler
-                0x08001884                WWDG_IRQHandler
-                0x08001884                TIM1_BRK_IRQHandler
-                0x08001884                EXTI1_IRQHandler
-                0x08001884                USART2_IRQHandler
-                0x08001884                I2C2_ER_IRQHandler
-                0x08001884                DMA1_Channel2_IRQHandler
-                0x08001884                CAN1_SCE_IRQHandler
-                0x08001884                FLASH_IRQHandler
-                0x08001884                I2C1_ER_IRQHandler
-                0x08001884                USBWakeUp_IRQHandler
- *fill*         0x08001886        0x2 
- .text.EncoderInit
-                0x08001888       0x58 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
-                0x08001888                EncoderInit
+                0x080018d0        0x2 CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
+                0x080018d0                RTC_Alarm_IRQHandler
+                0x080018d0                EXTI2_IRQHandler
+                0x080018d0                TIM1_CC_IRQHandler
+                0x080018d0                PVD_IRQHandler
+                0x080018d0                EXTI3_IRQHandler
+                0x080018d0                EXTI0_IRQHandler
+                0x080018d0                I2C2_EV_IRQHandler
+                0x080018d0                ADC1_2_IRQHandler
+                0x080018d0                SPI1_IRQHandler
+                0x080018d0                TAMPER_IRQHandler
+                0x080018d0                DMA1_Channel4_IRQHandler
+                0x080018d0                USART3_IRQHandler
+                0x080018d0                RTC_IRQHandler
+                0x080018d0                DMA1_Channel7_IRQHandler
+                0x080018d0                CAN1_RX1_IRQHandler
+                0x080018d0                I2C1_EV_IRQHandler
+                0x080018d0                DMA1_Channel6_IRQHandler
+                0x080018d0                RCC_IRQHandler
+                0x080018d0                TIM1_TRG_COM_IRQHandler
+                0x080018d0                DMA1_Channel1_IRQHandler
+                0x080018d0                Default_Handler
+                0x080018d0                EXTI15_10_IRQHandler
+                0x080018d0                EXTI9_5_IRQHandler
+                0x080018d0                SPI2_IRQHandler
+                0x080018d0                DMA1_Channel5_IRQHandler
+                0x080018d0                EXTI4_IRQHandler
+                0x080018d0                USB_LP_CAN1_RX0_IRQHandler
+                0x080018d0                USB_HP_CAN1_TX_IRQHandler
+                0x080018d0                DMA1_Channel3_IRQHandler
+                0x080018d0                TIM1_UP_IRQHandler
+                0x080018d0                WWDG_IRQHandler
+                0x080018d0                TIM1_BRK_IRQHandler
+                0x080018d0                EXTI1_IRQHandler
+                0x080018d0                USART2_IRQHandler
+                0x080018d0                I2C2_ER_IRQHandler
+                0x080018d0                DMA1_Channel2_IRQHandler
+                0x080018d0                CAN1_SCE_IRQHandler
+                0x080018d0                FLASH_IRQHandler
+                0x080018d0                I2C1_ER_IRQHandler
+                0x080018d0                USBWakeUp_IRQHandler
+ *fill*         0x080018d2        0x2 
+ .text.Encoder_Init
+                0x080018d4       0x58 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+                0x080018d4                Encoder_Init
  .text.EncoderCallBack
-                0x080018e0       0x80 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
-                0x080018e0                EncoderCallBack
- .text.GrayScalerCallBack
-                0x08001960       0x78 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
-                0x08001960                GrayScalerCallBack
+                0x0800192c       0x80 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+                0x0800192c                EncoderCallBack
  .text.GrayScaler_Init
-                0x080019d8        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
-                0x080019d8                GrayScaler_Init
- *fill*         0x080019da        0x2 
+                0x080019ac        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+                0x080019ac                GrayScaler_Init
+ *fill*         0x080019ae        0x2 
+ .text.GrayScalerCallBack
+                0x080019b0       0x64 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+                0x080019b0                GrayScalerCallBack
  .text.LED_Init
-                0x080019dc       0x20 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
-                0x080019dc                LED_Init
- .text.Ignite   0x080019fc       0x74 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
-                0x080019fc                Ignite
+                0x08001a14       0x20 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
+                0x08001a14                LED_Init
+ .text.Ignite   0x08001a34       0x74 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
+                0x08001a34                Ignite
  .text.MedicineBoxCallBack
-                0x08001a70       0x18 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
-                0x08001a70                MedicineBoxCallBack
- .text.MotorInit
-                0x08001a88       0x48 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
-                0x08001a88                MotorInit
+                0x08001aa8       0x18 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
+                0x08001aa8                MedicineBoxCallBack
+ .text.Motor_Init
+                0x08001ac0       0x48 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
+                0x08001ac0                Motor_Init
  .text.SetMotorOutput
-                0x08001ad0       0x94 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
-                0x08001ad0                SetMotorOutput
+                0x08001b08       0x94 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
+                0x08001b08                SetMotorOutput
  .text.PID_Init
-                0x08001b64       0x18 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
-                0x08001b64                PID_Init
+                0x08001b9c       0x18 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+                0x08001b9c                PID_Init
  .text.PID_DeInit
-                0x08001b7c        0x8 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
-                0x08001b7c                PID_DeInit
- *fill*         0x08001b84        0x4 
+                0x08001bb4        0x8 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+                0x08001bb4                PID_DeInit
  .text.PID_Compute
-                0x08001b88       0xa8 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
-                0x08001b88                PID_Compute
+                0x08001bbc       0x76 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+                0x08001bbc                PID_Compute
  .text.PID_ComputeFixed
-                0x08001c30        0xc CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
-                0x08001c30                PID_ComputeFixed
+                0x08001c32        0xc CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+                0x08001c32                PID_ComputeFixed
+ *fill*         0x08001c3e        0x2 
  .text.IntercomCallBack
-                0x08001c3c       0x30 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
-                0x08001c3c                IntercomCallBack
+                0x08001c40       0x30 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
+                0x08001c40                IntercomCallBack
  .text.Intercom_Init
-                0x08001c6c       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
-                0x08001c6c                Intercom_Init
+                0x08001c70       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
+                0x08001c70                Intercom_Init
  .text.WriteCmd
-                0x08001c94       0x2c CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x08001c94                WriteCmd
+                0x08001c98       0x2c CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x08001c98                WriteCmd
  .text.WriteDat
-                0x08001cc0       0x2c CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x08001cc0                WriteDat
+                0x08001cc4       0x2c CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x08001cc4                WriteDat
  .text.OLED_Init
-                0x08001cec       0xb4 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x08001cec                OLED_Init
+                0x08001cf0       0xb4 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x08001cf0                OLED_Init
  .text.OLED_SetPos
-                0x08001da0       0x26 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x08001da0                OLED_SetPos
+                0x08001da4       0x26 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x08001da4                OLED_SetPos
  .text.OLED_Fill
-                0x08001dc6       0x3c CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x08001dc6                OLED_Fill
+                0x08001dca       0x3c CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x08001dca                OLED_Fill
  .text.OLED_CLS
-                0x08001e02        0xa CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x08001e02                OLED_CLS
+                0x08001e06        0xa CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x08001e06                OLED_CLS
  .text.OLED_ShowStr
-                0x08001e0c       0xd8 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x08001e0c                OLED_ShowStr
+                0x08001e10       0xd8 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x08001e10                OLED_ShowStr
  .text.OLED_ShowChar
-                0x08001ee4       0x90 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x08001ee4                OLED_ShowChar
+                0x08001ee8       0x90 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x08001ee8                OLED_ShowChar
  .text.oled_pow
-                0x08001f74       0x16 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x08001f74                oled_pow
- *fill*         0x08001f8a        0x2 
+                0x08001f78       0x16 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x08001f78                oled_pow
+ *fill*         0x08001f8e        0x2 
  .text.OLED_ShowRealNum
-                0x08001f8c      0x14c CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x08001f8c                OLED_ShowRealNum
+                0x08001f90      0x14c CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x08001f90                OLED_ShowRealNum
  .text.OLED_ShowVariable
-                0x080020d8       0x4c CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x080020d8                OLED_ShowVariable
+                0x080020dc       0x4c CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x080020dc                OLED_ShowVariable
  .text.OpenMVGetTarRoom
-                0x08002124       0x2c CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
-                0x08002124                OpenMVGetTarRoom
+                0x08002128       0x2c CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+                0x08002128                OpenMVGetTarRoom
  .text.OpenMVGetMap
-                0x08002150       0x34 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
-                0x08002150                OpenMVGetMap
+                0x08002154       0x34 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+                0x08002154                OpenMVGetMap
  .text.OpenMVGetDirection
-                0x08002184       0x34 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
-                0x08002184                OpenMVGetDirection
+                0x08002188       0x34 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+                0x08002188                OpenMVGetDirection
  .text.HAL_UART_RxCpltCallback
-                0x080021b8       0x78 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
-                0x080021b8                HAL_UART_RxCpltCallback
+                0x080021bc       0x70 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+                0x080021bc                HAL_UART_RxCpltCallback
  .text.HAL_InitTick
-                0x08002230       0x4c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
-                0x08002230                HAL_InitTick
+                0x0800222c       0x4c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+                0x0800222c                HAL_InitTick
  .text.HAL_Init
-                0x0800227c       0x24 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
-                0x0800227c                HAL_Init
+                0x08002278       0x24 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+                0x08002278                HAL_Init
  .text.HAL_IncTick
-                0x080022a0       0x18 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
-                0x080022a0                HAL_IncTick
+                0x0800229c       0x18 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+                0x0800229c                HAL_IncTick
  .text.HAL_GetTick
-                0x080022b8        0xc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
-                0x080022b8                HAL_GetTick
+                0x080022b4        0xc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+                0x080022b4                HAL_GetTick
  .text.HAL_Delay
-                0x080022c4       0x28 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
-                0x080022c4                HAL_Delay
+                0x080022c0       0x28 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+                0x080022c0                HAL_Delay
  .text.__NVIC_SetPriority
-                0x080022ec       0x28 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x080022e8       0x28 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
  .text.NVIC_EncodePriority
-                0x08002314       0x3e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
- *fill*         0x08002352        0x2 
+                0x08002310       0x3e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+ *fill*         0x0800234e        0x2 
  .text.HAL_NVIC_SetPriorityGrouping
-                0x08002354       0x24 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
-                0x08002354                HAL_NVIC_SetPriorityGrouping
+                0x08002350       0x24 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x08002350                HAL_NVIC_SetPriorityGrouping
  .text.HAL_NVIC_SetPriority
-                0x08002378       0x20 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
-                0x08002378                HAL_NVIC_SetPriority
+                0x08002374       0x20 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x08002374                HAL_NVIC_SetPriority
  .text.HAL_NVIC_EnableIRQ
-                0x08002398       0x1c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
-                0x08002398                HAL_NVIC_EnableIRQ
+                0x08002394       0x1c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x08002394                HAL_NVIC_EnableIRQ
  .text.HAL_SYSTICK_Config
-                0x080023b4       0x28 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
-                0x080023b4                HAL_SYSTICK_Config
+                0x080023b0       0x28 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x080023b0                HAL_SYSTICK_Config
  .text.HAL_DMA_Abort
-                0x080023dc       0x46 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
-                0x080023dc                HAL_DMA_Abort
- *fill*         0x08002422        0x2 
+                0x080023d8       0x46 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
+                0x080023d8                HAL_DMA_Abort
+ *fill*         0x0800241e        0x2 
  .text.HAL_DMA_Abort_IT
-                0x08002424       0x98 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
-                0x08002424                HAL_DMA_Abort_IT
+                0x08002420       0x98 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
+                0x08002420                HAL_DMA_Abort_IT
  .text.HAL_GPIO_Init
-                0x080024bc      0x21c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
-                0x080024bc                HAL_GPIO_Init
+                0x080024b8      0x21c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+                0x080024b8                HAL_GPIO_Init
  .text.HAL_GPIO_ReadPin
-                0x080026d8        0xe CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
-                0x080026d8                HAL_GPIO_ReadPin
+                0x080026d4        0xe CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+                0x080026d4                HAL_GPIO_ReadPin
  .text.HAL_GPIO_WritePin
-                0x080026e6        0xc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
-                0x080026e6                HAL_GPIO_WritePin
+                0x080026e2        0xc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+                0x080026e2                HAL_GPIO_WritePin
  .text.I2C_IsAcknowledgeFailed
-                0x080026f2       0x32 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+                0x080026ee       0x32 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
  .text.I2C_WaitOnFlagUntilTimeout
-                0x08002724       0xaa CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+                0x08002720       0xaa CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
  .text.I2C_WaitOnMasterAddressFlagUntilTimeout
-                0x080027ce       0xd6 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+                0x080027ca       0xd6 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
  .text.I2C_WaitOnTXEFlagUntilTimeout
-                0x080028a4       0x5e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
- *fill*         0x08002902        0x2 
+                0x080028a0       0x5e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+ *fill*         0x080028fe        0x2 
  .text.I2C_RequestMemoryWrite
-                0x08002904       0xd8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+                0x08002900       0xd8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
  .text.I2C_WaitOnBTFFlagUntilTimeout
-                0x080029dc       0x5e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
- *fill*         0x08002a3a        0x2 
+                0x080029d8       0x5e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+ *fill*         0x08002a36        0x2 
  .text.HAL_I2C_Init
-                0x08002a3c      0x1bc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
-                0x08002a3c                HAL_I2C_Init
+                0x08002a38      0x1bc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+                0x08002a38                HAL_I2C_Init
  .text.HAL_I2C_Mem_Write
-                0x08002bf8      0x164 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
-                0x08002bf8                HAL_I2C_Mem_Write
+                0x08002bf4      0x164 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+                0x08002bf4                HAL_I2C_Mem_Write
  .text.RCC_Delay
-                0x08002d5c       0x2c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x08002d58       0x2c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
  .text.HAL_RCC_OscConfig
-                0x08002d88      0x410 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
-                0x08002d88                HAL_RCC_OscConfig
+                0x08002d84      0x410 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x08002d84                HAL_RCC_OscConfig
  .text.HAL_RCC_GetSysClockFreq
-                0x08003198       0x54 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
-                0x08003198                HAL_RCC_GetSysClockFreq
+                0x08003194       0x54 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x08003194                HAL_RCC_GetSysClockFreq
  .text.HAL_RCC_ClockConfig
-                0x080031ec      0x16c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
-                0x080031ec                HAL_RCC_ClockConfig
+                0x080031e8      0x16c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x080031e8                HAL_RCC_ClockConfig
  .text.HAL_RCC_GetHCLKFreq
-                0x08003358        0xc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
-                0x08003358                HAL_RCC_GetHCLKFreq
+                0x08003354        0xc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x08003354                HAL_RCC_GetHCLKFreq
  .text.HAL_RCC_GetPCLK1Freq
-                0x08003364       0x20 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
-                0x08003364                HAL_RCC_GetPCLK1Freq
+                0x08003360       0x20 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x08003360                HAL_RCC_GetPCLK1Freq
  .text.HAL_RCC_GetPCLK2Freq
-                0x08003384       0x20 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
-                0x08003384                HAL_RCC_GetPCLK2Freq
+                0x08003380       0x20 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x08003380                HAL_RCC_GetPCLK2Freq
  .text.TIM_OC1_SetConfig
-                0x080033a4       0x54 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x080033a0       0x54 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .text.TIM_OC3_SetConfig
-                0x080033f8       0x5c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x080033f4       0x5c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .text.TIM_OC4_SetConfig
-                0x08003454       0x48 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003450       0x48 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .text.TIM_TI1_ConfigInputStage
-                0x0800349c       0x24 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003498       0x24 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .text.TIM_TI2_ConfigInputStage
-                0x080034c0       0x26 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x080034bc       0x26 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .text.TIM_ITRx_SetConfig
-                0x080034e6       0x10 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
- *fill*         0x080034f6        0x2 
+                0x080034e2       0x10 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+ *fill*         0x080034f2        0x2 
  .text.HAL_TIM_Base_Start_IT
-                0x080034f8       0x68 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x080034f8                HAL_TIM_Base_Start_IT
+                0x080034f4       0x68 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x080034f4                HAL_TIM_Base_Start_IT
  .text.HAL_TIM_PWM_MspInit
-                0x08003560        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x08003560                HAL_TIM_PWM_MspInit
+                0x0800355c        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x0800355c                HAL_TIM_PWM_MspInit
  .text.HAL_TIM_OC_DelayElapsedCallback
-                0x08003562        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x08003562                HAL_TIM_OC_DelayElapsedCallback
+                0x0800355e        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x0800355e                HAL_TIM_OC_DelayElapsedCallback
  .text.HAL_TIM_IC_CaptureCallback
-                0x08003564        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x08003564                HAL_TIM_IC_CaptureCallback
+                0x08003560        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003560                HAL_TIM_IC_CaptureCallback
  .text.HAL_TIM_PWM_PulseFinishedCallback
-                0x08003566        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x08003566                HAL_TIM_PWM_PulseFinishedCallback
+                0x08003562        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003562                HAL_TIM_PWM_PulseFinishedCallback
  .text.HAL_TIM_TriggerCallback
-                0x08003568        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x08003568                HAL_TIM_TriggerCallback
+                0x08003564        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003564                HAL_TIM_TriggerCallback
  .text.HAL_TIM_IRQHandler
-                0x0800356a      0x17a CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x0800356a                HAL_TIM_IRQHandler
+                0x08003566      0x17a CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003566                HAL_TIM_IRQHandler
  .text.TIM_Base_SetConfig
-                0x080036e4       0x74 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x080036e4                TIM_Base_SetConfig
+                0x080036e0       0x74 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x080036e0                TIM_Base_SetConfig
  .text.HAL_TIM_Base_Init
-                0x08003758       0x58 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x08003758                HAL_TIM_Base_Init
+                0x08003754       0x58 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003754                HAL_TIM_Base_Init
  .text.HAL_TIM_PWM_Init
-                0x080037b0       0x58 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x080037b0                HAL_TIM_PWM_Init
+                0x080037ac       0x58 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x080037ac                HAL_TIM_PWM_Init
  .text.HAL_TIM_Encoder_Init
-                0x08003808       0xb6 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x08003808                HAL_TIM_Encoder_Init
- *fill*         0x080038be        0x2 
+                0x08003804       0xb6 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003804                HAL_TIM_Encoder_Init
+ *fill*         0x080038ba        0x2 
  .text.TIM_OC2_SetConfig
-                0x080038c0       0x5c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x080038c0                TIM_OC2_SetConfig
+                0x080038bc       0x5c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x080038bc                TIM_OC2_SetConfig
  .text.HAL_TIM_PWM_ConfigChannel
-                0x0800391c       0xdc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x0800391c                HAL_TIM_PWM_ConfigChannel
+                0x08003918       0xdc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003918                HAL_TIM_PWM_ConfigChannel
  .text.TIM_ETR_SetConfig
-                0x080039f8       0x18 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x080039f8                TIM_ETR_SetConfig
+                0x080039f4       0x18 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x080039f4                TIM_ETR_SetConfig
  .text.HAL_TIM_ConfigClockSource
-                0x08003a10       0xfe CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x08003a10                HAL_TIM_ConfigClockSource
+                0x08003a0c       0xfe CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003a0c                HAL_TIM_ConfigClockSource
  .text.TIM_CCxChannelCmd
-                0x08003b0e       0x1e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x08003b0e                TIM_CCxChannelCmd
+                0x08003b0a       0x1e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003b0a                TIM_CCxChannelCmd
  .text.HAL_TIM_PWM_Start
-                0x08003b2c       0xdc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x08003b2c                HAL_TIM_PWM_Start
+                0x08003b28       0xdc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003b28                HAL_TIM_PWM_Start
  .text.HAL_TIM_Encoder_Start
-                0x08003c08       0xcc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
-                0x08003c08                HAL_TIM_Encoder_Start
+                0x08003c04       0xcc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x08003c04                HAL_TIM_Encoder_Start
  .text.HAL_TIMEx_MasterConfigSynchronization
-                0x08003cd4       0x6c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
-                0x08003cd4                HAL_TIMEx_MasterConfigSynchronization
+                0x08003cd0       0x6c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
+                0x08003cd0                HAL_TIMEx_MasterConfigSynchronization
  .text.HAL_TIMEx_CommutCallback
-                0x08003d40        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
-                0x08003d40                HAL_TIMEx_CommutCallback
+                0x08003d3c        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
+                0x08003d3c                HAL_TIMEx_CommutCallback
  .text.HAL_TIMEx_BreakCallback
-                0x08003d42        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
-                0x08003d42                HAL_TIMEx_BreakCallback
+                0x08003d3e        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
+                0x08003d3e                HAL_TIMEx_BreakCallback
  .text.UART_EndRxTransfer
-                0x08003d44       0x5c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08003d40       0x5c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
  .text.UART_Transmit_IT
-                0x08003da0       0x60 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08003d9c       0x60 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
  .text.UART_SetConfig
-                0x08003e00       0x94 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08003dfc       0x94 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
  .text.UART_WaitOnFlagUntilTimeout
-                0x08003e94       0x84 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08003e90       0x84 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
  .text.HAL_UART_Init
-                0x08003f18       0x60 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
-                0x08003f18                HAL_UART_Init
+                0x08003f14       0x60 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08003f14                HAL_UART_Init
  .text.HAL_UART_Transmit
-                0x08003f78       0xbe CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
-                0x08003f78                HAL_UART_Transmit
+                0x08003f74       0xbe CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08003f74                HAL_UART_Transmit
  .text.HAL_UART_TxCpltCallback
-                0x08004036        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
-                0x08004036                HAL_UART_TxCpltCallback
+                0x08004032        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08004032                HAL_UART_TxCpltCallback
  .text.UART_EndTransmit_IT
-                0x08004038       0x1a CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08004034       0x1a CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
  .text.HAL_UART_ErrorCallback
-                0x08004052        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
-                0x08004052                HAL_UART_ErrorCallback
+                0x0800404e        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x0800404e                HAL_UART_ErrorCallback
  .text.UART_DMAAbortOnError
-                0x08004054       0x10 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08004050       0x10 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
  .text.HAL_UARTEx_RxEventCallback
-                0x08004064        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
-                0x08004064                HAL_UARTEx_RxEventCallback
+                0x08004060        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08004060                HAL_UARTEx_RxEventCallback
  .text.UART_Receive_IT
-                0x08004066       0xe6 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08004062       0xe6 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
  .text.HAL_UART_IRQHandler
-                0x0800414c      0x284 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
-                0x0800414c                HAL_UART_IRQHandler
+                0x08004148      0x284 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08004148                HAL_UART_IRQHandler
  .text.UART_Start_Receive_IT
-                0x080043d0       0x36 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
-                0x080043d0                UART_Start_Receive_IT
+                0x080043cc       0x36 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x080043cc                UART_Start_Receive_IT
  .text.HAL_UART_Receive_IT
-                0x08004406       0x26 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
-                0x08004406                HAL_UART_Receive_IT
+                0x08004402       0x26 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x08004402                HAL_UART_Receive_IT
  .text.ControlInit
-                0x0800442c       0x78 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
-                0x0800442c                ControlInit
- .text.Control  0x080044a4       0xa0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
-                0x080044a4                Control
+                0x08004428       0x6c CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+                0x08004428                ControlInit
+ .text.Control  0x08004494       0xa0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+                0x08004494                Control
  .text.SetMotorOutputPID
-                0x08004544       0x74 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
-                0x08004544                SetMotorOutputPID
- .text.Turn     0x080045b8       0x88 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
-                0x080045b8                Turn
+                0x08004534       0x74 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x08004534                SetMotorOutputPID
+ .text.MotorOutputPIDClear
+                0x080045a8       0x18 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x080045a8                MotorOutputPIDClear
+ .text.SetMotorOutputEncoder
+                0x080045c0       0xa0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x080045c0                SetMotorOutputEncoder
+ .text.Turn     0x08004660       0x3c CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x08004660                Turn
+ .text.ForwardTurn
+                0x0800469c       0x5c CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x0800469c                ForwardTurn
  .text.Mission1Handler
-                0x08004640      0x15c CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
-                0x08004640                Mission1Handler
+                0x080046f8      0x150 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
+                0x080046f8                Mission1Handler
  .text.Mission2Handler
-                0x0800479c      0x13c CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
-                0x0800479c                Mission2Handler
+                0x08004848      0x128 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
+                0x08004848                Mission2Handler
  .text.Mission3Handler
-                0x080048d8      0x2bc CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
-                0x080048d8                Mission3Handler
+                0x08004970      0x2ac CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
+                0x08004970                Mission3Handler
  .text.Mission4Handler
-                0x08004b94        0x2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
-                0x08004b94                Mission4Handler
+                0x08004c1c      0x1b8 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
+                0x08004c1c                Mission4Handler
  .text.Mission5Handler
-                0x08004b96        0x2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
-                0x08004b96                Mission5Handler
+                0x08004dd4        0x2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
+                0x08004dd4                Mission5Handler
+ *fill*         0x08004dd6        0x2 
  .text.TaskManager_Init
-                0x08004b98       0x30 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x08004b98                TaskManager_Init
+                0x08004dd8       0x30 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x08004dd8                TaskManager_Init
  .text.MissionWait_ms
-                0x08004bc8        0xc CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x08004bc8                MissionWait_ms
+                0x08004e08        0xc CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x08004e08                MissionWait_ms
  .text.MissionWait_msCallBack
-                0x08004bd4       0x14 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x08004bd4                MissionWait_msCallBack
+                0x08004e14       0x14 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x08004e14                MissionWait_msCallBack
  .text.EnquireVehicleNum
-                0x08004be8       0x28 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x08004be8                EnquireVehicleNum
+                0x08004e28       0x28 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x08004e28                EnquireVehicleNum
  .text.OpenMVWaitForMission
-                0x08004c10        0x8 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x08004c10                OpenMVWaitForMission
+                0x08004e50        0x8 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x08004e50                OpenMVWaitForMission
  .text.JudgeBranch
-                0x08004c18       0x84 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x08004c18                JudgeBranch
+                0x08004e58       0x84 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x08004e58                JudgeBranch
  .text.Mission0Handler
-                0x08004c9c      0x130 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x08004c9c                Mission0Handler
+                0x08004edc      0x15c CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x08004edc                Mission0Handler
  .text.TaskManagerCallBack
-                0x08004dcc       0x3c CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x08004dcc                TaskManagerCallBack
+                0x08005038       0x3c CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x08005038                TaskManagerCallBack
  .text.FirstTurn
-                0x08004e08       0x30 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x08004e08                FirstTurn
+                0x08005074       0x30 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x08005074                FirstTurn
  .text.FollowLinePID_Init
-                0x08004e38       0x3c CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
-                0x08004e38                FollowLinePID_Init
- *fill*         0x08004e74        0x4 
+                0x080050a4       0x44 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x080050a4                FollowLinePID_Init
+ .text.FollowLineRememberLineClear
+                0x080050e8        0xc CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x080050e8                FollowLineRememberLineClear
+ *fill*         0x080050f4        0x4 
  .text.FollowLinePIDCallBack
-                0x08004e78      0x19c CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
-                0x08004e78                FollowLinePIDCallBack
+                0x080050f8      0x18c CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x080050f8                FollowLinePIDCallBack
  .text.FollowLineClearLineCount
-                0x08005014       0x1c CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
-                0x08005014                FollowLineClearLineCount
- .text.memset   0x08005030       0xa4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
-                0x08005030                memset
- .text.__errno  0x080050d4        0xc e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
-                0x080050d4                __errno
+                0x08005284       0x1c CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x08005284                FollowLineClearLineCount
+ .text.FollowLineForLengthCallBack
+                0x080052a0       0x40 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x080052a0                FollowLineForLengthCallBack
+ .text.memset   0x080052e0       0xa4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
+                0x080052e0                memset
+ .text.__errno  0x08005384        0xc e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
+                0x08005384                __errno
  .text.__libc_init_array
-                0x080050e0       0x50 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
-                0x080050e0                __libc_init_array
+                0x08005390       0x50 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
+                0x08005390                __libc_init_array
  .text.__retarget_lock_acquire_recursive
-                0x08005130        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
-                0x08005130                __retarget_lock_acquire_recursive
+                0x080053e0        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+                0x080053e0                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x08005134        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
-                0x08005134                __retarget_lock_release_recursive
+                0x080053e4        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+                0x080053e4                __retarget_lock_release_recursive
  .text.startup.register_fini
-                0x08005138       0x14 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
- .text.atexit   0x0800514c        0xc e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
-                0x0800514c                atexit
+                0x080053e8       0x14 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+ .text.atexit   0x080053fc        0xc e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
+                0x080053fc                atexit
  .text.__libc_fini_array
-                0x08005158       0x28 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
-                0x08005158                __libc_fini_array
+                0x08005408       0x28 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
+                0x08005408                __libc_fini_array
  .text.__register_exitproc
-                0x08005180       0x88 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
-                0x08005180                __register_exitproc
- .text.log10    0x08005208       0x68 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libm.a(libm_a-w_log10.o)
-                0x08005208                log10
- .text.nan      0x08005270        0xc e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libm.a(libm_a-s_nan.o)
-                0x08005270                nan
- *fill*         0x0800527c        0x4 
+                0x08005430       0x88 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
+                0x08005430                __register_exitproc
+ .text.log10    0x080054b8       0x68 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libm.a(libm_a-w_log10.o)
+                0x080054b8                log10
+ .text.nan      0x08005520        0xc e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libm.a(libm_a-s_nan.o)
+                0x08005520                nan
+ *fill*         0x0800552c        0x4 
  .text.__ieee754_log10
-                0x08005280      0x104 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libm.a(libm_a-e_log10.o)
-                0x08005280                __ieee754_log10
- *fill*         0x08005384        0x4 
+                0x08005530      0x104 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libm.a(libm_a-e_log10.o)
+                0x08005530                __ieee754_log10
+ *fill*         0x08005634        0x4 
  .text.__ieee754_log
-                0x08005388      0x400 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libm.a(libm_a-e_log.o)
-                0x08005388                __ieee754_log
+                0x08005638      0x400 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libm.a(libm_a-e_log.o)
+                0x08005638                __ieee754_log
  *(.glue_7)
- .glue_7        0x08005788        0x0 linker stubs
+ .glue_7        0x08005a38        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08005788        0x0 linker stubs
+ .glue_7t       0x08005a38        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08005788        0x0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
+ .eh_frame      0x08005a38        0x0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
  *(.init)
- .init          0x08005788        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crti.o
-                0x08005788                _init
- .init          0x0800578c        0x8 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtn.o
+ .init          0x08005a38        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crti.o
+                0x08005a38                _init
+ .init          0x08005a3c        0x8 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtn.o
  *(.fini)
- .fini          0x08005794        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crti.o
-                0x08005794                _fini
- .fini          0x08005798        0x8 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtn.o
-                0x080057a0                        . = ALIGN (0x4)
-                0x080057a0                        _etext = .
+ .fini          0x08005a44        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crti.o
+                0x08005a44                _fini
+ .fini          0x08005a48        0x8 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtn.o
+                0x08005a50                        . = ALIGN (0x4)
+                0x08005a50                        _etext = .
 
-.vfp11_veneer   0x080057a0        0x0
- .vfp11_veneer  0x080057a0        0x0 linker stubs
+.vfp11_veneer   0x08005a50        0x0
+ .vfp11_veneer  0x08005a50        0x0 linker stubs
 
-.v4_bx          0x080057a0        0x0
- .v4_bx         0x080057a0        0x0 linker stubs
+.v4_bx          0x08005a50        0x0
+ .v4_bx         0x08005a50        0x0 linker stubs
 
-.iplt           0x080057a0        0x0
- .iplt          0x080057a0        0x0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
+.iplt           0x08005a50        0x0
+ .iplt          0x08005a50        0x0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
 
-.rodata         0x080057a0      0x890
-                0x080057a0                        . = ALIGN (0x4)
+.rodata         0x08005a50      0x8b8
+                0x08005a50                        . = ALIGN (0x4)
  *(.rodata)
  *(.rodata*)
  .rodata.main.str1.4
-                0x080057a0       0x25 CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
- *fill*         0x080057c5        0x3 
+                0x08005a50       0x4c CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
  .rodata.APBPrescTable
-                0x080057c8        0x8 CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
-                0x080057c8                APBPrescTable
+                0x08005a9c        0x8 CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
+                0x08005a9c                APBPrescTable
  .rodata.AHBPrescTable
-                0x080057d0       0x10 CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
-                0x080057d0                AHBPrescTable
+                0x08005aa4       0x10 CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
+                0x08005aa4                AHBPrescTable
  .rodata.sensor_pin
-                0x080057e0        0xc CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+                0x08005ab4        0xc CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
  .rodata.sensor_port
-                0x080057ec       0x18 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
- .rodata.F8X16  0x08005804      0x5f0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x08005804                F8X16
- .rodata.F6x8   0x08005df4      0x228 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x08005df4                F6x8
+                0x08005ac0       0x18 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+ .rodata.F8X16  0x08005ad8      0x5f0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x08005ad8                F8X16
+ .rodata.F6x8   0x080060c8      0x228 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x080060c8                F6x8
  .rodata.aPredivFactorTable.0
-                0x0800601c        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
- *fill*         0x0800601e        0x2 
+                0x080062f0        0x2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+ *fill*         0x080062f2        0x2 
  .rodata.aPLLMULFactorTable.1
-                0x08006020       0x10 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x080062f4       0x10 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
  .rodata.log10.str1.4
-                0x08006030       0x25 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libm.a(libm_a-w_log10.o)
-                                  0x1 (size before relaxing)
-                0x08006058                        . = ALIGN (0x4)
+                0x08006304        0x1 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libm.a(libm_a-w_log10.o)
+                0x08006308                        . = ALIGN (0x4)
+ *fill*         0x08006305        0x3 
 
-.rel.dyn        0x08006030        0x0
- .rel.iplt      0x08006030        0x0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
+.rel.dyn        0x08006308        0x0
+ .rel.iplt      0x08006308        0x0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
 
-.ARM.extab      0x08006030        0x0
-                0x08006030                        . = ALIGN (0x4)
+.ARM.extab      0x08006308        0x0
+                0x08006308                        . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08006030                        . = ALIGN (0x4)
+                0x08006308                        . = ALIGN (0x4)
 
-.ARM            0x08006030        0x0
-                0x08006030                        . = ALIGN (0x4)
-                0x08006030                        __exidx_start = .
+.ARM            0x08006308        0x0
+                0x08006308                        . = ALIGN (0x4)
+                0x08006308                        __exidx_start = .
  *(.ARM.exidx*)
-                0x08006030                        __exidx_end = .
-                0x08006030                        . = ALIGN (0x4)
+                0x08006308                        __exidx_end = .
+                0x08006308                        . = ALIGN (0x4)
 
-.preinit_array  0x08006030        0x0
-                0x08006030                        . = ALIGN (0x4)
-                0x08006030                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x08006308        0x0
+                0x08006308                        . = ALIGN (0x4)
+                0x08006308                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x08006030                        PROVIDE (__preinit_array_end = .)
-                0x08006030                        . = ALIGN (0x4)
+                0x08006308                        PROVIDE (__preinit_array_end = .)
+                0x08006308                        . = ALIGN (0x4)
 
-.init_array     0x08006030        0x8
-                0x08006030                        . = ALIGN (0x4)
-                0x08006030                        PROVIDE (__init_array_start = .)
+.init_array     0x08006308        0x8
+                0x08006308                        . = ALIGN (0x4)
+                0x08006308                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  .init_array.00000
-                0x08006030        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+                0x08006308        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
  *(.init_array*)
- .init_array    0x08006034        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
-                0x08006038                        PROVIDE (__init_array_end = .)
-                0x08006038                        . = ALIGN (0x4)
+ .init_array    0x0800630c        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
+                0x08006310                        PROVIDE (__init_array_end = .)
+                0x08006310                        . = ALIGN (0x4)
 
-.fini_array     0x08006038        0x4
-                0x08006038                        . = ALIGN (0x4)
-                0x08006038                        PROVIDE (__fini_array_start = .)
+.fini_array     0x08006310        0x4
+                0x08006310                        . = ALIGN (0x4)
+                0x08006310                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08006038        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
-                0x0800603c                        PROVIDE (__fini_array_end = .)
-                0x0800603c                        . = ALIGN (0x4)
-                0x0800603c                        _sidata = LOADADDR (.data)
+ .fini_array    0x08006310        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
+                0x08006314                        PROVIDE (__fini_array_end = .)
+                0x08006314                        . = ALIGN (0x4)
+                0x08006314                        _sidata = LOADADDR (.data)
 
-.data           0x20000000      0x17c load address 0x0800603c
+.data           0x20000000      0x174 load address 0x08006314
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -2714,190 +2722,189 @@ LOAD e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/c
  .data.uwTickPrio
                 0x20000008        0x4 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
                 0x20000008                uwTickPrio
- .data.flag.0   0x2000000c        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
- *fill*         0x2000000d        0x3 
  .data.hpid_rmotor
-                0x20000010       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
-                0x20000010                hpid_rmotor
+                0x2000000c       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x2000000c                hpid_rmotor
  .data.hpid_lmotor
-                0x20000030       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
-                0x20000030                hpid_lmotor
+                0x2000002c       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x2000002c                hpid_lmotor
  .data._impure_ptr
-                0x20000050        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
-                0x20000050                _impure_ptr
- *fill*         0x20000054        0x4 
+                0x2000004c        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
+                0x2000004c                _impure_ptr
  .data._impure_data
-                0x20000058      0x120 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
-                0x20000058                _impure_data
+                0x20000050      0x120 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
+                0x20000050                _impure_data
  .data.__atexit_recursive_mutex
-                0x20000178        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
-                0x20000178                __atexit_recursive_mutex
+                0x20000170        0x4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+                0x20000170                __atexit_recursive_mutex
  *(.RamFunc)
  *(.RamFunc*)
-                0x2000017c                        . = ALIGN (0x4)
-                0x2000017c                        _edata = .
+                0x20000174                        . = ALIGN (0x4)
+                0x20000174                        _edata = .
 
 .tm_clone_table
-                0x2000017c        0x0 load address 0x080061b8
+                0x20000174        0x0 load address 0x08006488
  .tm_clone_table
-                0x2000017c        0x0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
+                0x20000174        0x0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
  .tm_clone_table
-                0x2000017c        0x0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtend.o
+                0x20000174        0x0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtend.o
 
-.igot.plt       0x2000017c        0x0 load address 0x080061b8
- .igot.plt      0x2000017c        0x0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
-                0x2000017c                        . = ALIGN (0x4)
+.igot.plt       0x20000174        0x0 load address 0x08006488
+ .igot.plt      0x20000174        0x0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
+                0x20000174                        . = ALIGN (0x4)
 
-.bss            0x20000180      0x4fc load address 0x080061b8
-                0x20000180                        _sbss = .
-                0x20000180                        __bss_start__ = _sbss
+.bss            0x20000178      0x504 load address 0x08006488
+                0x20000178                        _sbss = .
+                0x20000178                        __bss_start__ = _sbss
  *(.bss)
  *(.bss*)
  .bss.completed.1
-                0x20000180        0x1 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
- *fill*         0x20000181        0x3 
- .bss.object.0  0x20000184       0x18 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
- .bss.hi2c2     0x2000019c       0x54 CMakeFiles/Explorerss.elf.dir/Core/Src/i2c.c.obj
-                0x2000019c                hi2c2
- .bss.htim4     0x200001f0       0x48 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
-                0x200001f0                htim4
- .bss.htim3     0x20000238       0x48 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
-                0x20000238                htim3
- .bss.htim2     0x20000280       0x48 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
-                0x20000280                htim2
- .bss.huart1    0x200002c8       0x48 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
-                0x200002c8                huart1
+                0x20000178        0x1 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
+ *fill*         0x20000179        0x3 
+ .bss.object.0  0x2000017c       0x18 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtbegin.o
+ .bss.hi2c2     0x20000194       0x54 CMakeFiles/Explorerss.elf.dir/Core/Src/i2c.c.obj
+                0x20000194                hi2c2
+ .bss.htim4     0x200001e8       0x48 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+                0x200001e8                htim4
+ .bss.htim3     0x20000230       0x48 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+                0x20000230                htim3
+ .bss.htim2     0x20000278       0x48 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+                0x20000278                htim2
+ .bss.huart1    0x200002c0       0x48 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
+                0x200002c0                huart1
  .bss.encoderR_10ms_tmp
-                0x20000310        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+                0x20000308        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
  .bss.encoderL_10ms_tmp
-                0x20000312        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+                0x2000030a        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
  .bss.encoder_count
-                0x20000314        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+                0x2000030c        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
  .bss.encoderR_10ms
-                0x20000316        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
-                0x20000316                encoderR_10ms
+                0x2000030e        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+                0x2000030e                encoderR_10ms
  .bss.encoderL_10ms
-                0x20000318        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
-                0x20000318                encoderL_10ms
+                0x20000310        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+                0x20000310                encoderL_10ms
  .bss.encoderR_1ms
-                0x2000031a        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
-                0x2000031a                encoderR_1ms
+                0x20000312        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+                0x20000312                encoderR_1ms
  .bss.encoderL_1ms
-                0x2000031c        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
-                0x2000031c                encoderL_1ms
+                0x20000314        0x2 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+                0x20000314                encoderL_1ms
  .bss.ex_sensor_count
-                0x2000031e        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
-                0x2000031e                ex_sensor_count
+                0x20000316        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+                0x20000316                ex_sensor_count
  .bss.sensor_count
-                0x2000031f        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
-                0x2000031f                sensor_count
- .bss.all_sensors
-                0x20000320        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
-                0x20000320                all_sensors
- *fill*         0x20000321        0x3 
- .bss.sensor    0x20000324        0x6 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
-                0x20000324                sensor
- .bss.loaded    0x2000032a        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
-                0x2000032a                loaded
+                0x20000317        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+                0x20000317                sensor_count
+ .bss.sensor    0x20000318        0x6 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+                0x20000318                sensor
+ .bss.loaded    0x2000031e        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
+                0x2000031e                loaded
  .bss.Intercom_connect
-                0x2000032b        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
-                0x2000032b                Intercom_connect
+                0x2000031f        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
+                0x2000031f                Intercom_connect
  .bss.Intercom_yourstate
-                0x2000032c        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
-                0x2000032c                Intercom_yourstate
+                0x20000320        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
+                0x20000320                Intercom_yourstate
  .bss.Intercom_mystate
-                0x2000032d        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
-                0x2000032d                Intercom_mystate
- *fill*         0x2000032e        0x2 
+                0x20000321        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
+                0x20000321                Intercom_mystate
+ *fill*         0x20000322        0x2 
  .bss.oled_hi2c
-                0x20000330        0x4 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
-                0x20000330                oled_hi2c
+                0x20000324        0x4 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x20000324                oled_hi2c
  .bss.openmv_rxbuffer
-                0x20000334        0xa CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
-                0x20000334                openmv_rxbuffer
+                0x20000328        0xa CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+                0x20000328                openmv_rxbuffer
  .bss.openmv_wait_switch
-                0x2000033e        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
-                0x2000033e                openmv_wait_switch
- *fill*         0x2000033f        0x1 
- .bss.uwTick    0x20000340        0x4 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
-                0x20000340                uwTick
- *fill*         0x20000344        0x4 
- .bss.fps       0x20000348        0x8 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
-                0x20000348                fps
+                0x20000332        0x1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+                0x20000332                openmv_wait_switch
+ *fill*         0x20000333        0x1 
+ .bss.uwTick    0x20000334        0x4 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+                0x20000334                uwTick
+ .bss.frames    0x20000338        0x8 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+                0x20000338                frames
  .bss.right_button
-                0x20000350        0x2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
-                0x20000350                right_button
- *fill*         0x20000352        0x2 
+                0x20000340        0x2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+                0x20000340                right_button
+ *fill*         0x20000342        0x2 
  .bss.left_button
-                0x20000354        0x2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
-                0x20000354                left_button
+                0x20000344        0x2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+                0x20000344                left_button
  .bss.debug_stop
-                0x20000356        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
-                0x20000356                debug_stop
- .bss.Path_on   0x20000357        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
-                0x20000357                Path_on
- .bss.Path_now  0x20000358        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
-                0x20000358                Path_now
- .bss.turn_count
-                0x20000359        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
-                0x20000359                turn_count
- .bss.Routput   0x2000035a        0x2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
-                0x2000035a                Routput
- .bss.Loutput   0x2000035c        0x2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
-                0x2000035c                Loutput
+                0x20000346        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+                0x20000346                debug_stop
+ .bss.Path_turn_flag.0
+                0x20000347        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+ .bss.encoderR_count.1
+                0x20000348        0x4 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+ .bss.encoderL_count.2
+                0x2000034c        0x4 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+ .bss.Path_now  0x20000350        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x20000350                Path_now
+ *fill*         0x20000351        0x1 
+ .bss.Routput   0x20000352        0x2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x20000352                Routput
+ .bss.Loutput   0x20000354        0x2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x20000354                Loutput
  .bss.last_stage1
-                0x2000035e        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
-                0x2000035e                last_stage1
- .bss.stage1    0x2000035f        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
-                0x2000035f                stage1
+                0x20000356        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
+                0x20000356                last_stage1
+ .bss.stage1    0x20000357        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
+                0x20000357                stage1
  .bss.last_stage2
-                0x20000360        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
-                0x20000360                last_stage2
- .bss.stage2    0x20000361        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
-                0x20000361                stage2
+                0x20000358        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
+                0x20000358                last_stage2
+ .bss.stage2    0x20000359        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
+                0x20000359                stage2
  .bss.last_stage3
-                0x20000362        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
-                0x20000362                last_stage3
- .bss.stage3    0x20000363        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
-                0x20000363                stage3
- .bss.stage4    0x20000364        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
-                0x20000364                stage4
- .bss.stage5    0x20000365        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
-                0x20000365                stage5
+                0x2000035a        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
+                0x2000035a                last_stage3
+ .bss.stage3    0x2000035b        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
+                0x2000035b                stage3
+ .bss.last_stage4
+                0x2000035c        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
+                0x2000035c                last_stage4
+ .bss.stage4    0x2000035d        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
+                0x2000035d                stage4
+ .bss.stage5    0x2000035e        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
+                0x2000035e                stage5
  .bss.turn_flag
-                0x20000366        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x20000366                turn_flag
- *fill*         0x20000367        0x1 
+                0x2000035f        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x2000035f                turn_flag
  .bss.mission_wait_count
-                0x20000368        0x4 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x20000368                mission_wait_count
+                0x20000360        0x4 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x20000360                mission_wait_count
  .bss.mission_wait_flag
-                0x2000036c        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x2000036c                mission_wait_flag
+                0x20000364        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x20000364                mission_wait_flag
  .bss.last_stage0
-                0x2000036d        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x2000036d                last_stage0
- .bss.stage0    0x2000036e        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x2000036e                stage0
- *fill*         0x2000036f        0x1 
- .bss.mission   0x20000370        0x5 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                0x20000370                mission
+                0x20000365        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x20000365                last_stage0
+ .bss.stage0    0x20000366        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x20000366                stage0
+ *fill*         0x20000367        0x1 
+ .bss.mission   0x20000368        0x5 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x20000368                mission
+ *fill*         0x2000036d        0x3 
+ .bss.encoder_count_follow.0
+                0x20000370        0x4 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
  .bss.line_flag
-                0x20000375        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
-                0x20000375                line_flag
+                0x20000374        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x20000374                line_flag
  .bss.last_line_count
-                0x20000376        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
-                0x20000376                last_line_count
+                0x20000375        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x20000375                last_line_count
  .bss.line_count
-                0x20000377        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
-                0x20000377                line_count
+                0x20000376        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x20000376                line_count
  .bss.rsensor_count
-                0x20000378        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
-                0x20000378                rsensor_count
+                0x20000377        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x20000377                rsensor_count
  .bss.lsensor_count
-                0x20000379        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
-                0x20000379                lsensor_count
- *fill*         0x2000037a        0x2 
+                0x20000378        0x1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x20000378                lsensor_count
+ *fill*         0x20000379        0x3 
  .bss.rsensor   0x2000037c        0x4 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
                 0x2000037c                rsensor
  .bss.lsensor   0x20000380        0x4 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
@@ -2928,7 +2935,7 @@ LOAD e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/c
                 0x2000067c                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x2000067c      0x604 load address 0x080061b8
+                0x2000067c      0x604 load address 0x08006488
                 0x20000680                        . = ALIGN (0x8)
  *fill*         0x2000067c        0x4 
                 [!provide]                        PROVIDE (end = .)
@@ -3121,121 +3128,121 @@ LOAD e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\l
  .comment       0x0000004c       0x4d e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
  .comment       0x0000004c       0x4d e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp/crtend.o
 
-.debug_info     0x00000000    0x1cd25
+.debug_info     0x00000000    0x1d1a9
  .debug_info    0x00000000      0x3b4 CMakeFiles/Explorerss.elf.dir/Core/Src/gpio.c.obj
  .debug_info    0x000003b4      0x859 CMakeFiles/Explorerss.elf.dir/Core/Src/i2c.c.obj
- .debug_info    0x00000c0d      0xa8b CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
- .debug_info    0x00001698      0x1f4 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj
- .debug_info    0x0000188c      0x9c4 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
- .debug_info    0x00002250      0x22d CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
- .debug_info    0x0000247d     0x1104 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
- .debug_info    0x00003581      0x9e7 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
- .debug_info    0x00003f68       0x2e CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
- .debug_info    0x00003f96      0x72a CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
- .debug_info    0x000046c0      0x284 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
- .debug_info    0x00004944      0x2e5 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
- .debug_info    0x00004c29      0x1e5 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
- .debug_info    0x00004e0e      0x925 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
- .debug_info    0x00005733      0x2d6 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
- .debug_info    0x00005a09      0x238 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
- .debug_info    0x00005c41     0x15fc CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
- .debug_info    0x0000723d      0x7af CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
- .debug_info    0x000079ec      0x7a2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
- .debug_info    0x0000818e      0xcad CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
- .debug_info    0x00008e3b      0x7da CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
- .debug_info    0x00009615      0x604 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
- .debug_info    0x00009c19     0x38b7 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
- .debug_info    0x0000d4d0      0x9c7 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
- .debug_info    0x0000de97     0x3b74 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
- .debug_info    0x00011a0b     0x1a88 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
- .debug_info    0x00013493     0x404c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
- .debug_info    0x000174df      0xd38 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
- .debug_info    0x00018217      0x5a2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
- .debug_info    0x000187b9      0x2ab CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
- .debug_info    0x00018a64      0x28a CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
- .debug_info    0x00018cee      0x479 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
- .debug_info    0x00019167       0xee CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
- .debug_info    0x00019255       0xee CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
- .debug_info    0x00019343      0x657 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
- .debug_info    0x0001999a      0x4da CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
- .debug_info    0x00019e74       0xb6 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
- .debug_info    0x00019f2a       0x52 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivdf3.o)
- .debug_info    0x00019f7c       0xc0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
- .debug_info    0x0001a03c       0x39 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixunsdfsi.o)
- .debug_info    0x0001a075       0x3c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_truncdfsf2.o)
- .debug_info    0x0001a0b1       0xaf e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubsf3.o)
- .debug_info    0x0001a160       0x52 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivsf3.o)
- .debug_info    0x0001a1b2       0xbc e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpsf2.o)
- .debug_info    0x0001a26e       0x39 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixsfsi.o)
- .debug_info    0x0001a2a7     0x109f e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
- .debug_info    0x0001b346      0x135 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
- .debug_info    0x0001b47b      0x732 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
- .debug_info    0x0001bbad      0x718 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
- .debug_info    0x0001c2c5      0x10b e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
- .debug_info    0x0001c3d0      0x20a e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
- .debug_info    0x0001c5da      0x2dd e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
- .debug_info    0x0001c8b7      0x118 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
- .debug_info    0x0001c9cf       0xf7 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
- .debug_info    0x0001cac6      0x25f e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
+ .debug_info    0x00000c0d      0xc06 CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
+ .debug_info    0x00001813      0x1f4 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj
+ .debug_info    0x00001a07      0x9c4 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+ .debug_info    0x000023cb      0x22d CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
+ .debug_info    0x000025f8     0x1104 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+ .debug_info    0x000036fc      0x9e7 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
+ .debug_info    0x000040e3       0x2e CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
+ .debug_info    0x00004111      0x738 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+ .debug_info    0x00004849      0x270 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+ .debug_info    0x00004ab9      0x2e5 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
+ .debug_info    0x00004d9e      0x1e5 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
+ .debug_info    0x00004f83      0x925 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
+ .debug_info    0x000058a8      0x299 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+ .debug_info    0x00005b41      0x238 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
+ .debug_info    0x00005d79     0x15fc CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+ .debug_info    0x00007375      0x7af CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+ .debug_info    0x00007b24      0x7a2 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+ .debug_info    0x000082c6      0xcad CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+ .debug_info    0x00008f73      0x7da CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
+ .debug_info    0x0000974d      0x604 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+ .debug_info    0x00009d51     0x38b7 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+ .debug_info    0x0000d608      0x9c7 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+ .debug_info    0x0000dfcf     0x3b74 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+ .debug_info    0x00011b43     0x1a88 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
+ .debug_info    0x000135cb     0x404c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+ .debug_info    0x00017617      0xd1b CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+ .debug_info    0x00018332      0x685 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+ .debug_info    0x000189b7      0x2d6 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
+ .debug_info    0x00018c8d      0x266 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
+ .debug_info    0x00018ef3      0x456 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
+ .debug_info    0x00019349      0x325 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
+ .debug_info    0x0001966e       0xee CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
+ .debug_info    0x0001975c      0x6e4 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+ .debug_info    0x00019e40      0x4b8 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+ .debug_info    0x0001a2f8       0xb6 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .debug_info    0x0001a3ae       0x52 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivdf3.o)
+ .debug_info    0x0001a400       0xc0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
+ .debug_info    0x0001a4c0       0x39 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixunsdfsi.o)
+ .debug_info    0x0001a4f9       0x3c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .debug_info    0x0001a535       0xaf e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .debug_info    0x0001a5e4       0x52 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivsf3.o)
+ .debug_info    0x0001a636       0xbc e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpsf2.o)
+ .debug_info    0x0001a6f2       0x39 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixsfsi.o)
+ .debug_info    0x0001a72b     0x109f e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
+ .debug_info    0x0001b7ca      0x135 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
+ .debug_info    0x0001b8ff      0x732 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
+ .debug_info    0x0001c031      0x718 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
+ .debug_info    0x0001c749      0x10b e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
+ .debug_info    0x0001c854      0x20a e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+ .debug_info    0x0001ca5e      0x2dd e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+ .debug_info    0x0001cd3b      0x118 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
+ .debug_info    0x0001ce53       0xf7 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
+ .debug_info    0x0001cf4a      0x25f e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
 
-.debug_abbrev   0x00000000     0x5020
+.debug_abbrev   0x00000000     0x5082
  .debug_abbrev  0x00000000      0x151 CMakeFiles/Explorerss.elf.dir/Core/Src/gpio.c.obj
  .debug_abbrev  0x00000151      0x1fc CMakeFiles/Explorerss.elf.dir/Core/Src/i2c.c.obj
- .debug_abbrev  0x0000034d      0x28d CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
- .debug_abbrev  0x000005da       0xed CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj
- .debug_abbrev  0x000006c7      0x1a4 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
- .debug_abbrev  0x0000086b      0x143 CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
- .debug_abbrev  0x000009ae      0x29f CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
- .debug_abbrev  0x00000c4d      0x223 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
- .debug_abbrev  0x00000e70       0x1d CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
- .debug_abbrev  0x00000e8d      0x1bb CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
- .debug_abbrev  0x00001048      0x168 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
- .debug_abbrev  0x000011b0      0x148 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
- .debug_abbrev  0x000012f8      0x12f CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
- .debug_abbrev  0x00001427      0x1d9 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
- .debug_abbrev  0x00001600      0x12e CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
- .debug_abbrev  0x0000172e      0x15c CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
- .debug_abbrev  0x0000188a      0x2bc CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
- .debug_abbrev  0x00001b46      0x1c8 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
- .debug_abbrev  0x00001d0e      0x22d CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
- .debug_abbrev  0x00001f3b      0x36d CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
- .debug_abbrev  0x000022a8      0x244 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
- .debug_abbrev  0x000024ec      0x1f7 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
- .debug_abbrev  0x000026e3      0x2be CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
- .debug_abbrev  0x000029a1      0x2a0 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
- .debug_abbrev  0x00002c41      0x270 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
- .debug_abbrev  0x00002eb1      0x26e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
- .debug_abbrev  0x0000311f      0x31c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
- .debug_abbrev  0x0000343b      0x24c CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
- .debug_abbrev  0x00003687      0x1b2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
- .debug_abbrev  0x00003839       0xff CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
- .debug_abbrev  0x00003938       0xff CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
- .debug_abbrev  0x00003a37      0x118 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
- .debug_abbrev  0x00003b4f       0x94 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
- .debug_abbrev  0x00003be3       0x94 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
- .debug_abbrev  0x00003c77      0x191 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
- .debug_abbrev  0x00003e08      0x1bd CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
- .debug_abbrev  0x00003fc5       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
- .debug_abbrev  0x00003fe6       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivdf3.o)
- .debug_abbrev  0x00004007       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
- .debug_abbrev  0x00004028       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixunsdfsi.o)
- .debug_abbrev  0x00004049       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_truncdfsf2.o)
- .debug_abbrev  0x0000406a       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubsf3.o)
- .debug_abbrev  0x0000408b       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivsf3.o)
- .debug_abbrev  0x000040ac       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpsf2.o)
- .debug_abbrev  0x000040cd       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixsfsi.o)
- .debug_abbrev  0x000040ee      0x45c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
- .debug_abbrev  0x0000454a       0xb7 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
- .debug_abbrev  0x00004601      0x185 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
- .debug_abbrev  0x00004786      0x19a e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
- .debug_abbrev  0x00004920       0xc9 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
- .debug_abbrev  0x000049e9      0x115 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
- .debug_abbrev  0x00004afe      0x20c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
- .debug_abbrev  0x00004d0a       0xc1 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
- .debug_abbrev  0x00004dcb       0xcc e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
- .debug_abbrev  0x00004e97      0x189 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
+ .debug_abbrev  0x0000034d      0x284 CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
+ .debug_abbrev  0x000005d1       0xed CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj
+ .debug_abbrev  0x000006be      0x1a4 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+ .debug_abbrev  0x00000862      0x143 CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
+ .debug_abbrev  0x000009a5      0x29f CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+ .debug_abbrev  0x00000c44      0x223 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
+ .debug_abbrev  0x00000e67       0x1d CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
+ .debug_abbrev  0x00000e84      0x1bd CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+ .debug_abbrev  0x00001041      0x16a CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+ .debug_abbrev  0x000011ab      0x148 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
+ .debug_abbrev  0x000012f3      0x12f CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
+ .debug_abbrev  0x00001422      0x1d9 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
+ .debug_abbrev  0x000015fb      0x12e CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+ .debug_abbrev  0x00001729      0x15c CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
+ .debug_abbrev  0x00001885      0x2bc CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+ .debug_abbrev  0x00001b41      0x1c8 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+ .debug_abbrev  0x00001d09      0x22d CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+ .debug_abbrev  0x00001f36      0x36d CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+ .debug_abbrev  0x000022a3      0x244 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
+ .debug_abbrev  0x000024e7      0x1f7 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+ .debug_abbrev  0x000026de      0x2be CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+ .debug_abbrev  0x0000299c      0x2a0 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+ .debug_abbrev  0x00002c3c      0x270 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+ .debug_abbrev  0x00002eac      0x26e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
+ .debug_abbrev  0x0000311a      0x31c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+ .debug_abbrev  0x00003436      0x239 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+ .debug_abbrev  0x0000366f      0x1cc CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+ .debug_abbrev  0x0000383b       0xf7 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
+ .debug_abbrev  0x00003932       0xff CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
+ .debug_abbrev  0x00003a31      0x118 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
+ .debug_abbrev  0x00003b49      0x101 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
+ .debug_abbrev  0x00003c4a       0x94 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
+ .debug_abbrev  0x00003cde      0x191 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+ .debug_abbrev  0x00003e6f      0x1b8 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+ .debug_abbrev  0x00004027       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .debug_abbrev  0x00004048       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivdf3.o)
+ .debug_abbrev  0x00004069       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
+ .debug_abbrev  0x0000408a       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixunsdfsi.o)
+ .debug_abbrev  0x000040ab       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .debug_abbrev  0x000040cc       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .debug_abbrev  0x000040ed       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivsf3.o)
+ .debug_abbrev  0x0000410e       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpsf2.o)
+ .debug_abbrev  0x0000412f       0x21 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixsfsi.o)
+ .debug_abbrev  0x00004150      0x45c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
+ .debug_abbrev  0x000045ac       0xb7 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
+ .debug_abbrev  0x00004663      0x185 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
+ .debug_abbrev  0x000047e8      0x19a e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
+ .debug_abbrev  0x00004982       0xc9 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
+ .debug_abbrev  0x00004a4b      0x115 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+ .debug_abbrev  0x00004b60      0x20c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+ .debug_abbrev  0x00004d6c       0xc1 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
+ .debug_abbrev  0x00004e2d       0xcc e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
+ .debug_abbrev  0x00004ef9      0x189 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
 
-.debug_aranges  0x00000000     0x1598
+.debug_aranges  0x00000000     0x15b0
  .debug_aranges
                 0x00000000       0x20 CMakeFiles/Explorerss.elf.dir/Core/Src/gpio.c.obj
  .debug_aranges
@@ -3255,100 +3262,100 @@ LOAD e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\l
  .debug_aranges
                 0x000001d8       0x28 CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
  .debug_aranges
-                0x00000200       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+                0x00000200       0x30 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
  .debug_aranges
-                0x00000228       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+                0x00000230       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
  .debug_aranges
-                0x00000250       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
+                0x00000258       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
  .debug_aranges
-                0x00000278       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
+                0x00000280       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
  .debug_aranges
-                0x000002a0       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
+                0x000002a8       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
  .debug_aranges
-                0x000002c8       0x38 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+                0x000002d0       0x38 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
  .debug_aranges
-                0x00000300       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
+                0x00000308       0x28 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
  .debug_aranges
-                0x00000328       0xa8 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x00000330       0xa8 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
  .debug_aranges
-                0x000003d0       0x40 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+                0x000003d8       0x40 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
  .debug_aranges
-                0x00000410       0xe0 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+                0x00000418       0xe0 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
  .debug_aranges
-                0x000004f0       0xc0 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x000004f8       0xc0 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
  .debug_aranges
-                0x000005b0       0x80 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
+                0x000005b8       0x80 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
  .debug_aranges
-                0x00000630       0x58 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+                0x00000638       0x58 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
  .debug_aranges
-                0x00000688      0x2a8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+                0x00000690      0x2a8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
  .debug_aranges
-                0x00000930       0x90 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x00000938       0x90 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
  .debug_aranges
-                0x000009c0      0x3d0 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x000009c8      0x3d0 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .debug_aranges
-                0x00000d90      0x168 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
+                0x00000d98      0x168 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
  .debug_aranges
-                0x00000ef8      0x208 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x00000f00      0x208 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
  .debug_aranges
-                0x00001100       0x28 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+                0x00001108       0x28 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
  .debug_aranges
-                0x00001128       0x38 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x00001130       0x48 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
  .debug_aranges
-                0x00001160       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
+                0x00001178       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
  .debug_aranges
-                0x00001180       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
+                0x00001198       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
  .debug_aranges
-                0x000011a0       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
+                0x000011b8       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
  .debug_aranges
-                0x000011c0       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
+                0x000011d8       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
  .debug_aranges
-                0x000011e0       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
+                0x000011f8       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
  .debug_aranges
-                0x00001200       0x60 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x00001218       0x60 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
  .debug_aranges
-                0x00001260       0x40 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x00001278       0x40 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
  .debug_aranges
-                0x000012a0       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
+                0x000012b8       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
  .debug_aranges
-                0x000012c0       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivdf3.o)
+                0x000012d8       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivdf3.o)
  .debug_aranges
-                0x000012e0       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
+                0x000012f8       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
  .debug_aranges
-                0x00001300       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixunsdfsi.o)
+                0x00001318       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixunsdfsi.o)
  .debug_aranges
-                0x00001320       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+                0x00001338       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_truncdfsf2.o)
  .debug_aranges
-                0x00001340       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubsf3.o)
+                0x00001358       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubsf3.o)
  .debug_aranges
-                0x00001360       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivsf3.o)
+                0x00001378       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivsf3.o)
  .debug_aranges
-                0x00001380       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpsf2.o)
+                0x00001398       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpsf2.o)
  .debug_aranges
-                0x000013a0       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixsfsi.o)
+                0x000013b8       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixsfsi.o)
  .debug_aranges
-                0x000013c0       0x70 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
+                0x000013d8       0x70 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
  .debug_aranges
-                0x00001430       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
+                0x00001448       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
  .debug_aranges
-                0x00001450       0x18 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
+                0x00001468       0x18 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
  .debug_aranges
-                0x00001468       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
+                0x00001480       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
  .debug_aranges
-                0x00001488       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
+                0x000014a0       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
  .debug_aranges
-                0x000014a8       0x68 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+                0x000014c0       0x68 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
  .debug_aranges
-                0x00001510       0x28 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+                0x00001528       0x28 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
  .debug_aranges
-                0x00001538       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
+                0x00001550       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
  .debug_aranges
-                0x00001558       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
+                0x00001570       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
  .debug_aranges
-                0x00001578       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
+                0x00001590       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
 
 .debug_rnglists
-                0x00000000     0x1013
+                0x00000000     0x1025
  .debug_rnglists
                 0x00000000       0x14 CMakeFiles/Explorerss.elf.dir/Core/Src/gpio.c.obj
  .debug_rnglists
@@ -3368,248 +3375,248 @@ LOAD e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\l
  .debug_rnglists
                 0x00000140       0x19 CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
  .debug_rnglists
-                0x00000159       0x1a CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+                0x00000159       0x20 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
  .debug_rnglists
-                0x00000173       0x19 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+                0x00000179       0x19 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
  .debug_rnglists
-                0x0000018c       0x19 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
+                0x00000192       0x19 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
  .debug_rnglists
-                0x000001a5       0x19 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
+                0x000001ab       0x19 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
  .debug_rnglists
-                0x000001be       0x1a CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
+                0x000001c4       0x1a CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
  .debug_rnglists
-                0x000001d8       0x26 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+                0x000001de       0x25 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
  .debug_rnglists
-                0x000001fe       0x19 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
+                0x00000203       0x19 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
  .debug_rnglists
-                0x00000217       0x7e CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x0000021c       0x7e CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
  .debug_rnglists
-                0x00000295       0x2b CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+                0x0000029a       0x2b CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
  .debug_rnglists
-                0x000002c0       0xa3 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+                0x000002c5       0xa3 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
  .debug_rnglists
-                0x00000363       0x8b CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x00000368       0x8b CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
  .debug_rnglists
-                0x000003ee       0x5e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
+                0x000003f3       0x5e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
  .debug_rnglists
-                0x0000044c       0x3f CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+                0x00000451       0x3f CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
  .debug_rnglists
-                0x0000048b      0x236 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+                0x00000490      0x236 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
  .debug_rnglists
-                0x000006c1       0x7d CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x000006c6       0x7d CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
  .debug_rnglists
-                0x0000073e      0x2fe CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x00000743      0x2fe CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .debug_rnglists
-                0x00000a3c      0x11a CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
+                0x00000a41      0x11a CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
  .debug_rnglists
-                0x00000b56      0x1a1 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x00000b5b      0x1a1 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
  .debug_rnglists
-                0x00000cf7       0x1a CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+                0x00000cfc       0x1a CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
  .debug_rnglists
-                0x00000d11       0x27 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x00000d16       0x33 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
  .debug_rnglists
-                0x00000d38       0x14 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
+                0x00000d49       0x14 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
  .debug_rnglists
-                0x00000d4c       0x14 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
+                0x00000d5d       0x14 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
  .debug_rnglists
-                0x00000d60       0x14 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
+                0x00000d71       0x14 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
  .debug_rnglists
-                0x00000d74       0x13 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
+                0x00000d85       0x14 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
  .debug_rnglists
-                0x00000d87       0x13 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
+                0x00000d99       0x13 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
  .debug_rnglists
-                0x00000d9a       0x45 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                0x00000dac       0x45 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
  .debug_rnglists
-                0x00000ddf       0x2c CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x00000df1       0x2c CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
  .debug_rnglists
-                0x00000e0b      0x116 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
+                0x00000e1d      0x116 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
  .debug_rnglists
-                0x00000f21       0x14 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
+                0x00000f33       0x14 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
  .debug_rnglists
-                0x00000f35       0x13 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
+                0x00000f47       0x13 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
  .debug_rnglists
-                0x00000f48       0x13 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
+                0x00000f5a       0x13 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
  .debug_rnglists
-                0x00000f5b       0x49 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+                0x00000f6d       0x49 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
  .debug_rnglists
-                0x00000fa4       0x35 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+                0x00000fb6       0x35 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
  .debug_rnglists
-                0x00000fd9       0x13 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
+                0x00000feb       0x13 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
  .debug_rnglists
-                0x00000fec       0x13 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
+                0x00000ffe       0x13 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
  .debug_rnglists
-                0x00000fff       0x14 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
+                0x00001011       0x14 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
 
-.debug_line     0x00000000    0x19e20
+.debug_line     0x00000000    0x1a23b
  .debug_line    0x00000000      0x26b CMakeFiles/Explorerss.elf.dir/Core/Src/gpio.c.obj
  .debug_line    0x0000026b      0x31d CMakeFiles/Explorerss.elf.dir/Core/Src/i2c.c.obj
- .debug_line    0x00000588      0x490 CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
- .debug_line    0x00000a18      0x172 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj
- .debug_line    0x00000b8a      0x36b CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
- .debug_line    0x00000ef5      0x23c CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
- .debug_line    0x00001131      0x612 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
- .debug_line    0x00001743      0x356 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
- .debug_line    0x00001a99       0x78 CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
- .debug_line    0x00001b11      0x2fc CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
- .debug_line    0x00001e0d      0x2aa CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
- .debug_line    0x000020b7      0x238 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
- .debug_line    0x000022ef      0x227 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
- .debug_line    0x00002516      0x2a0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
- .debug_line    0x000027b6      0x195 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
- .debug_line    0x0000294b      0x238 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
- .debug_line    0x00002b83      0xa20 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
- .debug_line    0x000035a3      0x3c0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
- .debug_line    0x00003963      0x572 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
- .debug_line    0x00003ed5      0x6ee CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
- .debug_line    0x000045c3      0xa77 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
- .debug_line    0x0000503a      0x5c8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
- .debug_line    0x00005602     0x5676 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
- .debug_line    0x0000ac78      0xc33 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
- .debug_line    0x0000b8ab     0x4924 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
- .debug_line    0x000101cf     0x1c6f CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
- .debug_line    0x00011e3e     0x43f0 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
- .debug_line    0x0001622e      0x44f CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
- .debug_line    0x0001667d      0x3cc CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
- .debug_line    0x00016a49      0x315 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
- .debug_line    0x00016d5e      0x302 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
- .debug_line    0x00017060      0x4b2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
- .debug_line    0x00017512       0xc1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
- .debug_line    0x000175d3       0xc1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
- .debug_line    0x00017694      0x60b CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
- .debug_line    0x00017c9f      0x3a4 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
- .debug_line    0x00018043      0x16f e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
- .debug_line    0x000181b2      0x184 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivdf3.o)
- .debug_line    0x00018336       0xa6 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
- .debug_line    0x000183dc       0x5e e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixunsdfsi.o)
- .debug_line    0x0001843a       0x76 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_truncdfsf2.o)
- .debug_line    0x000184b0      0x103 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubsf3.o)
- .debug_line    0x000185b3      0x123 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivsf3.o)
- .debug_line    0x000186d6       0x9a e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpsf2.o)
- .debug_line    0x00018770       0x62 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixsfsi.o)
- .debug_line    0x000187d2      0x6d1 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
- .debug_line    0x00018ea3      0x245 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
- .debug_line    0x000190e8      0x173 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
- .debug_line    0x0001925b      0x198 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
- .debug_line    0x000193f3      0x196 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
- .debug_line    0x00019589      0x1ad e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
- .debug_line    0x00019736      0x2ca e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
- .debug_line    0x00019a00      0x114 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
- .debug_line    0x00019b14      0x146 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
- .debug_line    0x00019c5a      0x1c6 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
+ .debug_line    0x00000588      0x4fc CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
+ .debug_line    0x00000a84      0x172 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj
+ .debug_line    0x00000bf6      0x36b CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+ .debug_line    0x00000f61      0x23c CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
+ .debug_line    0x0000119d      0x612 CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+ .debug_line    0x000017af      0x356 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
+ .debug_line    0x00001b05       0x78 CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
+ .debug_line    0x00001b7d      0x32e CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+ .debug_line    0x00001eab      0x28d CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+ .debug_line    0x00002138      0x238 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
+ .debug_line    0x00002370      0x227 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
+ .debug_line    0x00002597      0x2a0 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
+ .debug_line    0x00002837      0x184 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+ .debug_line    0x000029bb      0x238 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
+ .debug_line    0x00002bf3      0xa20 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+ .debug_line    0x00003613      0x3b1 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+ .debug_line    0x000039c4      0x572 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+ .debug_line    0x00003f36      0x6ee CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+ .debug_line    0x00004624      0xa77 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
+ .debug_line    0x0000509b      0x5c8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+ .debug_line    0x00005663     0x5676 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+ .debug_line    0x0000acd9      0xc33 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+ .debug_line    0x0000b90c     0x4924 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+ .debug_line    0x00010230     0x1c6f CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
+ .debug_line    0x00011e9f     0x43f0 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+ .debug_line    0x0001628f      0x42d CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+ .debug_line    0x000166bc      0x486 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+ .debug_line    0x00016b42      0x316 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
+ .debug_line    0x00016e58      0x2fe CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
+ .debug_line    0x00017156      0x4b2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
+ .debug_line    0x00017608      0x3b3 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
+ .debug_line    0x000179bb       0xc1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
+ .debug_line    0x00017a7c      0x632 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+ .debug_line    0x000180ae      0x3b0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+ .debug_line    0x0001845e      0x16f e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .debug_line    0x000185cd      0x184 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivdf3.o)
+ .debug_line    0x00018751       0xa6 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
+ .debug_line    0x000187f7       0x5e e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixunsdfsi.o)
+ .debug_line    0x00018855       0x76 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .debug_line    0x000188cb      0x103 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .debug_line    0x000189ce      0x123 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivsf3.o)
+ .debug_line    0x00018af1       0x9a e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpsf2.o)
+ .debug_line    0x00018b8b       0x62 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixsfsi.o)
+ .debug_line    0x00018bed      0x6d1 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
+ .debug_line    0x000192be      0x245 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
+ .debug_line    0x00019503      0x173 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
+ .debug_line    0x00019676      0x198 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
+ .debug_line    0x0001980e      0x196 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
+ .debug_line    0x000199a4      0x1ad e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+ .debug_line    0x00019b51      0x2ca e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+ .debug_line    0x00019e1b      0x114 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
+ .debug_line    0x00019f2f      0x146 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
+ .debug_line    0x0001a075      0x1c6 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
 
-.debug_str      0x00000000     0x64dd
+.debug_str      0x00000000     0x65ce
  .debug_str     0x00000000      0x262 CMakeFiles/Explorerss.elf.dir/Core/Src/gpio.c.obj
                                 0x2b3 (size before relaxing)
  .debug_str     0x00000262      0x4e4 CMakeFiles/Explorerss.elf.dir/Core/Src/i2c.c.obj
                                 0x76e (size before relaxing)
- .debug_str     0x00000746      0x549 CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
-                                0x974 (size before relaxing)
- .debug_str     0x00000c8f       0x7e CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj
+ .debug_str     0x00000746      0x670 CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
+                                0xab0 (size before relaxing)
+ .debug_str     0x00000db6       0x7e CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj
                                 0x247 (size before relaxing)
- .debug_str     0x00000d0d      0x327 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
+ .debug_str     0x00000e34      0x327 CMakeFiles/Explorerss.elf.dir/Core/Src/stm32f1xx_it.c.obj
                                 0x9b7 (size before relaxing)
- .debug_str     0x00001034       0xa2 CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
+ .debug_str     0x0000115b       0xa2 CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
                                 0x27c (size before relaxing)
- .debug_str     0x000010d6      0x60e CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
+ .debug_str     0x000011fd      0x60e CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
                                 0xda3 (size before relaxing)
- .debug_str     0x000016e4       0x75 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
+ .debug_str     0x0000180b       0x75 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
                                 0xa15 (size before relaxing)
- .debug_str     0x00001759       0x69 CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
+ .debug_str     0x00001880       0x69 CMakeFiles/Explorerss.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj
                                  0x96 (size before relaxing)
- .debug_str     0x000017c2       0xbf CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
-                                0x768 (size before relaxing)
- .debug_str     0x00001881       0xab CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
-                                0x2a9 (size before relaxing)
- .debug_str     0x0000192c       0x49 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
-                                0x242 (size before relaxing)
- .debug_str     0x00001975       0x70 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
-                                0x27d (size before relaxing)
- .debug_str     0x000019e5       0x82 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
-                                0x770 (size before relaxing)
- .debug_str     0x00001a67       0xf5 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+ .debug_str     0x000018e9       0xcf CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+                                0x778 (size before relaxing)
+ .debug_str     0x000019b8       0x9f CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
                                 0x29d (size before relaxing)
- .debug_str     0x00001b5c       0x96 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
+ .debug_str     0x00001a57       0x49 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
+                                0x242 (size before relaxing)
+ .debug_str     0x00001aa0       0x71 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
+                                0x27e (size before relaxing)
+ .debug_str     0x00001b11       0x83 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
+                                0x771 (size before relaxing)
+ .debug_str     0x00001b94       0xda CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+                                0x282 (size before relaxing)
+ .debug_str     0x00001c6e       0x96 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
                                 0x2a3 (size before relaxing)
- .debug_str     0x00001bf2      0x1db CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+ .debug_str     0x00001d04      0x1e7 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
                                 0x89f (size before relaxing)
- .debug_str     0x00001dcd      0x155 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+ .debug_str     0x00001eeb       0xe8 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
                                 0x723 (size before relaxing)
- .debug_str     0x00001f22      0x316 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+ .debug_str     0x00001fd3      0x316 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
                                 0x856 (size before relaxing)
- .debug_str     0x00002238      0x3b8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+ .debug_str     0x000022e9      0x3b8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
                                 0x8fb (size before relaxing)
- .debug_str     0x000025f0      0x25e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
+ .debug_str     0x000026a1      0x25e CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
                                 0x625 (size before relaxing)
- .debug_str     0x0000284e      0x11a CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+ .debug_str     0x000028ff      0x11a CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
                                 0x428 (size before relaxing)
- .debug_str     0x00002968      0x8d0 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+ .debug_str     0x00002a19      0x8d0 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
                                 0xfed (size before relaxing)
- .debug_str     0x00003238      0x1f8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+ .debug_str     0x000032e9      0x1f8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
                                 0x653 (size before relaxing)
- .debug_str     0x00003430      0xcf7 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+ .debug_str     0x000034e1      0xcf7 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
                                0x169d (size before relaxing)
- .debug_str     0x00004127      0x512 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
+ .debug_str     0x000041d8      0x512 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
                                 0xeb9 (size before relaxing)
- .debug_str     0x00004639      0x5ce CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+ .debug_str     0x000046ea      0x5ce CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
                                 0xd1c (size before relaxing)
- .debug_str     0x00004c07       0xdc CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
-                                0xb9b (size before relaxing)
- .debug_str     0x00004ce3       0xff CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
-                                0x3c5 (size before relaxing)
- .debug_str     0x00004de2       0xd2 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
+ .debug_str     0x00004cb8       0xe6 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+                                0xb9c (size before relaxing)
+ .debug_str     0x00004d9e      0x146 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                                0x3ce (size before relaxing)
+ .debug_str     0x00004ee4       0xa1 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
+                                0x308 (size before relaxing)
+ .debug_str     0x00004f85       0xc8 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
                                 0x2d8 (size before relaxing)
- .debug_str     0x00004eb4       0xc8 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
-                                0x2d8 (size before relaxing)
- .debug_str     0x00004f7c      0x10e CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
-                                0x3a3 (size before relaxing)
- .debug_str     0x0000508a       0x92 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
+ .debug_str     0x0000504d      0x10e CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
+                                0x3aa (size before relaxing)
+ .debug_str     0x0000515b      0x148 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
+                                0x3ac (size before relaxing)
+ .debug_str     0x000052a3       0x92 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
                                 0x21a (size before relaxing)
- .debug_str     0x0000511c       0x92 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
-                                0x21a (size before relaxing)
- .debug_str     0x000051ae      0x15f CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
-                                0x6db (size before relaxing)
- .debug_str     0x0000530d      0x129 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
-                                0x487 (size before relaxing)
- .debug_str     0x00005436      0x154 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .debug_str     0x00005335       0xb0 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+                                0x7ab (size before relaxing)
+ .debug_str     0x000053e5      0x126 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                                0x46f (size before relaxing)
+ .debug_str     0x0000550b      0x154 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
                                 0x196 (size before relaxing)
- .debug_str     0x0000558a       0x1f e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivdf3.o)
+ .debug_str     0x0000565f       0x1f e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivdf3.o)
                                 0x116 (size before relaxing)
- .debug_str     0x000055a9       0x97 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
+ .debug_str     0x0000567e       0xa6 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
                                 0x19f (size before relaxing)
- .debug_str     0x00005640        0xd e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixunsdfsi.o)
+ .debug_str     0x00005724        0xd e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixunsdfsi.o)
                                 0x105 (size before relaxing)
- .debug_str     0x0000564d        0xd e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .debug_str     0x00005731        0xd e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_truncdfsf2.o)
                                 0x103 (size before relaxing)
- .debug_str     0x0000565a       0xbc e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .debug_str     0x0000573e       0xc9 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubsf3.o)
                                 0x18a (size before relaxing)
- .debug_str     0x00005716       0x12 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivsf3.o)
+ .debug_str     0x00005807       0x12 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivsf3.o)
                                 0x116 (size before relaxing)
- .debug_str     0x00005728       0x97 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpsf2.o)
+ .debug_str     0x00005819       0x97 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpsf2.o)
                                 0x19f (size before relaxing)
- .debug_str     0x000057bf        0xa e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixsfsi.o)
+ .debug_str     0x000058b0        0xa e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixsfsi.o)
                                 0x101 (size before relaxing)
- .debug_str     0x000057c9      0x690 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
+ .debug_str     0x000058ba      0x690 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
                                 0x7a0 (size before relaxing)
- .debug_str     0x00005e59       0x70 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
+ .debug_str     0x00005f4a       0x70 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
                                 0x21c (size before relaxing)
- .debug_str     0x00005ec9       0x6e e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
+ .debug_str     0x00005fba       0x6e e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
                                 0x51d (size before relaxing)
- .debug_str     0x00005f37       0x69 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
+ .debug_str     0x00006028       0x69 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
                                 0x512 (size before relaxing)
- .debug_str     0x00005fa0       0xbf e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
+ .debug_str     0x00006091       0xbf e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
                                 0x269 (size before relaxing)
- .debug_str     0x0000605f      0x1e0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+ .debug_str     0x00006150      0x1e0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
                                 0x37b (size before relaxing)
- .debug_str     0x0000623f      0x100 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+ .debug_str     0x00006330      0x100 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
                                 0x345 (size before relaxing)
- .debug_str     0x0000633f       0xa7 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
+ .debug_str     0x00006430       0xa7 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
                                 0x245 (size before relaxing)
- .debug_str     0x000063e6       0x83 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
+ .debug_str     0x000064d7       0x83 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
                                 0x23f (size before relaxing)
- .debug_str     0x00006469       0x74 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
+ .debug_str     0x0000655a       0x74 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
                                 0x31c (size before relaxing)
 
-.debug_frame    0x00000000     0x3754
+.debug_frame    0x00000000     0x379c
  .debug_frame   0x00000000       0x38 CMakeFiles/Explorerss.elf.dir/Core/Src/gpio.c.obj
  .debug_frame   0x00000038       0x60 CMakeFiles/Explorerss.elf.dir/Core/Src/i2c.c.obj
  .debug_frame   0x00000098       0x70 CMakeFiles/Explorerss.elf.dir/Core/Src/main.c.obj
@@ -3618,54 +3625,54 @@ LOAD e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\l
  .debug_frame   0x00000238       0x30 CMakeFiles/Explorerss.elf.dir/Core/Src/system_stm32f1xx.c.obj
  .debug_frame   0x00000268       0xfc CMakeFiles/Explorerss.elf.dir/Core/Src/tim.c.obj
  .debug_frame   0x00000364       0x64 CMakeFiles/Explorerss.elf.dir/Core/Src/usart.c.obj
- .debug_frame   0x000003c8       0x44 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
- .debug_frame   0x0000040c       0x38 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
- .debug_frame   0x00000444       0x40 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
- .debug_frame   0x00000484       0x38 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
- .debug_frame   0x000004bc       0x44 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
- .debug_frame   0x00000500       0x68 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
- .debug_frame   0x00000568       0x40 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
- .debug_frame   0x000005a8      0x234 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
- .debug_frame   0x000007dc       0x78 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
- .debug_frame   0x00000854      0x1cc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
- .debug_frame   0x00000a20      0x19c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
- .debug_frame   0x00000bbc      0x144 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
- .debug_frame   0x00000d00       0xe4 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
- .debug_frame   0x00000de4      0x984 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
- .debug_frame   0x00001768      0x184 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
- .debug_frame   0x000018ec      0xb14 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
- .debug_frame   0x00002400      0x40c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
- .debug_frame   0x0000280c      0x5d4 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
- .debug_frame   0x00002de0       0x44 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
- .debug_frame   0x00002e24       0x78 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
- .debug_frame   0x00002e9c       0x28 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
- .debug_frame   0x00002ec4       0x28 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
- .debug_frame   0x00002eec       0x28 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
- .debug_frame   0x00002f14       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
- .debug_frame   0x00002f34       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
- .debug_frame   0x00002f54       0xc8 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
- .debug_frame   0x0000301c       0x84 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
- .debug_frame   0x000030a0       0xac e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
- .debug_frame   0x0000314c       0x50 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivdf3.o)
- .debug_frame   0x0000319c       0xc4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
- .debug_frame   0x00003260       0x24 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixunsdfsi.o)
- .debug_frame   0x00003284       0x24 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_truncdfsf2.o)
- .debug_frame   0x000032a8       0x4c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubsf3.o)
- .debug_frame   0x000032f4       0x38 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivsf3.o)
- .debug_frame   0x0000332c       0xc8 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpsf2.o)
- .debug_frame   0x000033f4       0x24 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixsfsi.o)
- .debug_frame   0x00003418      0x130 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
- .debug_frame   0x00003548       0x2c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
- .debug_frame   0x00003574       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
- .debug_frame   0x00003594       0x2c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
- .debug_frame   0x000035c0       0xb0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
- .debug_frame   0x00003670       0x5c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
- .debug_frame   0x000036cc       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
- .debug_frame   0x000036ec       0x34 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
- .debug_frame   0x00003720       0x34 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
+ .debug_frame   0x000003c8       0x54 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Encoder.c.obj
+ .debug_frame   0x0000041c       0x38 CMakeFiles/Explorerss.elf.dir/Dependences/Src/GrayScaler.c.obj
+ .debug_frame   0x00000454       0x40 CMakeFiles/Explorerss.elf.dir/Dependences/Src/LED.c.obj
+ .debug_frame   0x00000494       0x38 CMakeFiles/Explorerss.elf.dir/Dependences/Src/MedicineBox.c.obj
+ .debug_frame   0x000004cc       0x44 CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
+ .debug_frame   0x00000510       0x68 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+ .debug_frame   0x00000578       0x40 CMakeFiles/Explorerss.elf.dir/Dependences/Src/intercom.c.obj
+ .debug_frame   0x000005b8      0x234 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+ .debug_frame   0x000007ec       0x78 CMakeFiles/Explorerss.elf.dir/Dependences/Src/openmv.c.obj
+ .debug_frame   0x00000864      0x1cc CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+ .debug_frame   0x00000a30      0x19c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+ .debug_frame   0x00000bcc      0x144 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
+ .debug_frame   0x00000d10       0xe4 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+ .debug_frame   0x00000df4      0x984 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+ .debug_frame   0x00001778      0x184 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+ .debug_frame   0x000018fc      0xb14 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+ .debug_frame   0x00002410      0x40c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
+ .debug_frame   0x0000281c      0x5d4 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+ .debug_frame   0x00002df0       0x44 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Control.c.obj
+ .debug_frame   0x00002e34       0xa8 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+ .debug_frame   0x00002edc       0x28 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task1.c.obj
+ .debug_frame   0x00002f04       0x28 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task2.c.obj
+ .debug_frame   0x00002f2c       0x28 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task3.c.obj
+ .debug_frame   0x00002f54       0x28 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task4.c.obj
+ .debug_frame   0x00002f7c       0x20 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskBranches/Task5.c.obj
+ .debug_frame   0x00002f9c       0xc8 CMakeFiles/Explorerss.elf.dir/Tasks/Src/TaskManager.c.obj
+ .debug_frame   0x00003064       0x84 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+ .debug_frame   0x000030e8       0xac e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .debug_frame   0x00003194       0x50 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivdf3.o)
+ .debug_frame   0x000031e4       0xc4 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
+ .debug_frame   0x000032a8       0x24 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixunsdfsi.o)
+ .debug_frame   0x000032cc       0x24 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .debug_frame   0x000032f0       0x4c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .debug_frame   0x0000333c       0x38 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_muldivsf3.o)
+ .debug_frame   0x00003374       0xc8 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_cmpsf2.o)
+ .debug_frame   0x0000343c       0x24 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libgcc.a(_arm_fixsfsi.o)
+ .debug_frame   0x00003460      0x130 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
+ .debug_frame   0x00003590       0x2c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
+ .debug_frame   0x000035bc       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
+ .debug_frame   0x000035dc       0x2c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
+ .debug_frame   0x00003608       0xb0 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+ .debug_frame   0x000036b8       0x5c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+ .debug_frame   0x00003714       0x20 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
+ .debug_frame   0x00003734       0x34 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
+ .debug_frame   0x00003768       0x34 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
 
 .debug_loclists
-                0x00000000     0xc201
+                0x00000000     0xc28f
  .debug_loclists
                 0x00000000       0x4b CMakeFiles/Explorerss.elf.dir/Core/Src/i2c.c.obj
  .debug_loclists
@@ -3685,47 +3692,47 @@ LOAD e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\l
  .debug_loclists
                 0x000002fe       0x5e CMakeFiles/Explorerss.elf.dir/Dependences/Src/Motor.c.obj
  .debug_loclists
-                0x0000035c      0x106 CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
+                0x0000035c       0xdf CMakeFiles/Explorerss.elf.dir/Dependences/Src/PID.c.obj
  .debug_loclists
-                0x00000462      0x913 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
+                0x0000043b      0x913 CMakeFiles/Explorerss.elf.dir/Dependences/Src/oled.c.obj
  .debug_loclists
-                0x00000d75       0xc9 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+                0x00000d4e       0xc9 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
  .debug_loclists
-                0x00000e3e      0x422 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x00000e17      0x422 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
  .debug_loclists
-                0x00001260      0x4c7 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
+                0x00001239      0x4c7 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
  .debug_loclists
-                0x00001727      0x2e8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+                0x00001700      0x2e8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
  .debug_loclists
-                0x00001a0f     0x2b7b CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+                0x000019e8     0x2b7b CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
  .debug_loclists
-                0x0000458a      0x3f8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x00004563      0x3f8 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
  .debug_loclists
-                0x00004982     0x3332 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+                0x0000495b     0x3332 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .debug_loclists
-                0x00007cb4     0x124c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
+                0x00007c8d     0x124c CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
  .debug_loclists
-                0x00008f00     0x2af9 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+                0x00008ed9     0x2af9 CMakeFiles/Explorerss.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
  .debug_loclists
-                0x0000b9f9       0x6a CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
+                0x0000b9d2      0x122 CMakeFiles/Explorerss.elf.dir/Tasks/Src/Functions.c.obj
  .debug_loclists
-                0x0000ba63       0x5b CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
+                0x0000baf4       0x58 CMakeFiles/Explorerss.elf.dir/Tasks/Src/followline.c.obj
  .debug_loclists
-                0x0000babe      0x2b6 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
+                0x0000bb4c      0x2b6 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
  .debug_loclists
-                0x0000bd74      0x1cf e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
+                0x0000be02      0x1cf e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
  .debug_loclists
-                0x0000bf43       0x6f e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
+                0x0000bfd1       0x6f e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
  .debug_loclists
-                0x0000bfb2       0x23 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+                0x0000c040       0x23 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
  .debug_loclists
-                0x0000bfd5      0x128 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+                0x0000c063      0x128 e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
  .debug_loclists
-                0x0000c0fd       0x2a e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
+                0x0000c18b       0x2a e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
  .debug_loclists
-                0x0000c127       0x4c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
+                0x0000c1b5       0x4c e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
  .debug_loclists
-                0x0000c173       0x8e e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
+                0x0000c201       0x8e e:/12.2 mpacbti-bet1/bin/../lib/gcc/arm-none-eabi/12.2.0/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
 
 .debug_line_str
                 0x00000000      0x161

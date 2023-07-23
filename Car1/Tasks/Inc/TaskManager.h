@@ -25,10 +25,10 @@
        --------        ---------
                |       |  
                |       |
-	   --------        ----------
-			   1       2
-	   --------        ----------
-	           |       |
+	     --------        ----------
+		      	   1       2
+	     --------        ----------
+	             |       |
 */
 /******************************** User's Types ********************************/
 typedef struct{
@@ -44,6 +44,7 @@ typedef enum{
 	EnquireCarNum, // 查询小车数量
 	WaitForOpenMV,
 	WaitForMedicineIn,
+	OpenLoopForward,
 	OpenMVStartSearching,
 	FollowLine,
 	ChooseBranch,
@@ -53,6 +54,8 @@ typedef enum{
 void TaskManager_Init(void);
 void TaskManagerCallBack(void);	
 void FirstTurn(void);
+void MissionWait_ms(uint32_t n);
+void MissionWait_msCallBack(void);
 
 /***************************Extern Variables**************************/
 extern Mission_t mission;
