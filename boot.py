@@ -22,8 +22,8 @@ def Switch_TaskMode(Received_Bytes):
         return 3
 
 #---
-fm.register(GPIO.GPIOHS7,fm.fpioa.UART2_TX)
-fm.register(GPIO.GPIOHS6,fm.fpioa.UART2_RX)
+fm.register(6,fm.fpioa.UART2_TX)
+fm.register(8,fm.fpioa.UART2_RX)
 fm.register(28, fm.fpioa.GPIO0)
 uart_A = UART(UART.UART2, 115200, 8, None, 1, timeout=1000, read_buf_len=4096)
 write_str = 'get dat\r\n'
@@ -65,7 +65,6 @@ while(True):
 			count=count+1
 		for i in code:      
 			a=img.draw_rectangle(i.rect(),(0,255,0),2)
-			if()
 			print(labels[i.classid()])
 			a = lcd.display(img)
 			lcd.draw_string(i.x()+45, i.y()-5, labels[i.classid()]+" "+'%.2f'%i.value(), lcd.WHITE,lcd.GREEN)
