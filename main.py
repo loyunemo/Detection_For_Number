@@ -1,46 +1,79 @@
-try:
-	import gc, lcd, image, sys, os
-	from Maix import GPIO
-	from fpioa_manager import fm
-	test_pin=16
-	fm.fpioa.set_function(test_pin,fm.fpioa.GPIO7)
-	test_gpio=GPIO(GPIO.GPIO7,GPIO.IN,GPIO.PULL_UP)
-	lcd.init()
-	lcd.clear(color=(255,0,0))
-	lcd.draw_string(lcd.width()//2-68,lcd.height()//2-4, "Welcome to ", lcd.WHITE, lcd.RED)
-	if test_gpio.value() == 0:
-		print('PIN 16 pulled down, enter test mode')
-		lcd.clear(lcd.PINK)
-		lcd.draw_string(lcd.width()//2-68,lcd.height()//2-4, "Test Mode, wait ...", lcd.WHITE, lcd.PINK)
-		import sensor
-		import image
-		sensor.reset()
-		sensor.set_pixformat(sensor.RGB565)
-		sensor.set_framesize(sensor.QVGA)
-		sensor.run(1)
-		lcd.freq(16000000)
-		while True:
-			img=sensor.snapshot()
-			lcd.display(img)
-	loading = image.Image(size=(lcd.width(), lcd.height()))
-	loading.draw_rectangle((0, 0, lcd.width(), lcd.height()), fill=True, color=(255, 0, 0))
-	info = "Welcome to MaixPy"
-	loading.draw_string(int(lcd.width()//2 - len(info) * 5), (lcd.height())//4, info, color=(255, 255, 255), scale=2, mono_space=0)
-	v = sys.implementation.version
-	vers = 'V{}.{}.{} : maixpy.sipeed.com'.format(v[0],v[1],v[2])
-	loading.draw_string(int(lcd.width()//2 - len(info) * 6), (lcd.height())//3 + 20, vers, color=(255, 255, 255), scale=1, mono_space=1)
-	lcd.display(loading)
-	tf = None
-	try:
-			os.listdir("/sd/.")
-	except Exception as e:
-		tf ="SDcard not mount,use flash!"
-		loading.draw_string(int(lcd.width()//2 - len(info) * 7), (lcd.height())//2 + 10, tf, color=(255, 255, 255), scale=1, mono_space=1)
-	if not tf:
-		tf ="SDcard is mount,use SD!"
-		loading.draw_string(int(lcd.width()//2 - len(info) * 6), (lcd.height())//2 + 10, tf, color=(255, 255, 255), scale=1, mono_space=1)
-	lcd.display(loading)
-	del loading, v, info, vers
-	gc.collect()
-finally:
-	gc.collect()
+import sensor, image, time,pyb
+from de import detection
+import de
+from de import Switch_TaskMode,Detection_for_Selected
+import time, sensor, image,pyb,Communication
+from image import SEARCH_EX, SEARCH_DS
+from de import detection,Detection_for_LR,Detection_for_Stop
+from pyb import UART
+from communication import packdata
+global uartx
+uart=UART(3,115200)
+led = pyb.LED(3)
+ledG =pyb.LED(2)
+ledR=pyb.LED(1)
+# Set sensor settings
+sensor.set_contrast(1)
+sensor.set_gainceiling(16)
+
+sensor.reset()
+sensor.set_framesize(sensor.QQVGA)
+sensor.set_pixformat(sensor.GRAYSCALE)
+sensor.skip_frames(time = 2000)
+
+threshold = (120,255)
+
+t1 = image.Image("./1.pgm").to_grayscale()#.binary([threshold])
+t2 = image.Image("./2.pgm").to_grayscale()#.binary([threshold])
+t3 = image.Image("./3.pgm").to_grayscale()#.binary([threshold])
+t4 = image.Image("./4.pgm").to_grayscale()#.binary([threshold])
+t5 = image.Image("./5.pgm").to_grayscale()#.binary([threshold])
+t6 = image.Image("./6.pgm").to_grayscale()#.binary([threshold])
+t7 = image.Image("./7.pgm").to_grayscale()#.binary([threshold])
+t8 = image.Image("./8.pgm").to_grayscale()#.binary([threshold])
+t_All=[t1,t2,t3,t4,t5,t6,t7,t8]
+global Task_Mode_Flag
+global a
+a=0x05
+global b
+clock = time.clock()
+global state_stopsending
+state_stopsending=0
+while(True):
+    flag=0
+    debug_flag = 0
+    if uart.any():
+        a = int(uart.read(1)[0])
+        led.on()
+        state_stopsending=1
+        b=0
+    else:
+        pass
+    Task_Mode_Flag=Switch_TaskMode(a)
+    Task_Mode_Flag=2
+    clock.tick()
+    z = sensor.snapshot().lens_corr(strength = 1.8, zoom = 1.0).\
+        replace(hmirror=True,vflip=True,transpose=False).\
+        rotation_corr(corners=[(36,0),(124,0),(160,120),(0,120)])
+
+    if Task_Mode_Flag==1:
+        data=Detection_for_Stop(t_All,z)
+    elif Task_Mode_Flag==2:
+        data=Detection_for_Selected(a,z,t_All)
+
+        ledR.on()
+    elif Task_Mode_Flag==3:
+        data=Detection_for_LR(a-16,z,t_All)
+
+    else:
+        data=0
+    #a=0x00
+    #[a,detectR,detectL]=detection(t1,t2,t3,t4,t5,t6,t7,t8,z)
+    #LR=Detection_for_LR(a-16,z,t_All)
+    if state_stopsending and data and data!=0:
+        flag=data
+        packdata(data,uart)
+        #data=0
+        state_stopsending=0
+        ledG.on()
+    print("state:",state_stopsending,"flag:",Task_Mode_Flag,"data:",data,clock.fps())

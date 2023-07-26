@@ -45,8 +45,10 @@ def Detection_for_Selected(a,Received_Bytes,img,code):
                 a = img.draw_rectangle(Content.rect(),(0,255,0),2)
                 lcd.draw_string(Content.x()+45, Content.y()-5, labels[Content.classid()]+" "+'%.2f'%Content.value(), lcd.WHITE,lcd.GREEN)
                 a = lcd.display(img.replace(hmirror=True,vflip=True))
-
-                return Received_Bytes
+                if Content.x()+Content.w()/2<=160:
+                    return 1
+                else:
+                    return 2
     else:
         a = lcd.display(img.replace(hmirror=True,vflip=True))
         return 0
@@ -68,6 +70,7 @@ def Detection_for_LR(a,Received_Bytes,img,t):
 fm.register(8,fm.fpioa.UART2_TX)
 fm.register(6,fm.fpioa.UART2_RX)
 fm.register(28, fm.fpioa.GPIO0)
+global Task_Mode_Flag
 global uart_A
 global stop_sending
 stop_sending=1
@@ -111,11 +114,12 @@ while(True):
     elif TaskMode==2:
         flag=Detection_for_Selected(a,Read_Buffer[0],img,code)
         stop_sending=1
-    else:
+    elif TaskMode==3:
         flag=Detection_for_LR(a,Read_Buffer[0]-16,img,code)
         stop_sending=1
+    else:
+        data=0
     if flag and flag!=0 and stop_sending:
         stop_sending=0
-        #packdata(flag,uart_A)
-        flag=0
+        packdata(flag,uart_A)
 a = kpu.deinit(task)

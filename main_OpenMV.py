@@ -1,15 +1,6 @@
-'''
-Author: loyunemo 3210100968@zju.edu.cn
-Date: 2023-07-17 02:58:18
-LastEditors: loyunemo 3210100968@zju.edu.cn
-LastEditTime: 2023-07-24 15:43:50
-FilePath: \undefinedc:\Users\Nemo\Desktop\main.py
-Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
-'''
-# Untitled - By: Nemo - 周日 7月 16 2023
-
 import sensor, image, time,pyb
 from de import detection
+import de
 from de import Switch_TaskMode,Detection_for_Selected
 import time, sensor, image,pyb,Communication
 from image import SEARCH_EX, SEARCH_DS
@@ -19,6 +10,8 @@ from communication import packdata
 global uartx
 uart=UART(3,115200)
 led = pyb.LED(3)
+ledG =pyb.LED(2)
+ledR=pyb.LED(1)
 # Set sensor settings
 sensor.set_contrast(1)
 sensor.set_gainceiling(16)
@@ -27,40 +20,60 @@ sensor.reset()
 sensor.set_framesize(sensor.QQVGA)
 sensor.set_pixformat(sensor.GRAYSCALE)
 sensor.skip_frames(time = 2000)
-t1 = image.Image("./1_s.pgm").to_grayscale()
-t2 = image.Image("./2_s.pgm").to_grayscale()
-t3 = image.Image("./3_s.pgm").to_grayscale()
-t4 = image.Image("./4_f.pgm").to_grayscale()
-t5 = image.Image("./5_f.pgm").to_grayscale()
-t6 = image.Image("./6_f.pgm").to_grayscale()
-t7 = image.Image("./7_f.pgm").to_grayscale()
-t8 = image.Image("./8_f.pgm").to_grayscale()
+
+threshold = (120,255)
+
+t1 = image.Image("./1.pgm").to_grayscale()#.binary([threshold])
+t2 = image.Image("./2.pgm").to_grayscale()#.binary([threshold])
+t3 = image.Image("./3.pgm").to_grayscale()#.binary([threshold])
+t4 = image.Image("./4.pgm").to_grayscale()#.binary([threshold])
+t5 = image.Image("./5.pgm").to_grayscale()#.binary([threshold])
+t6 = image.Image("./6.pgm").to_grayscale()#.binary([threshold])
+t7 = image.Image("./7.pgm").to_grayscale()#.binary([threshold])
+t8 = image.Image("./8.pgm").to_grayscale()#.binary([threshold])
 t_All=[t1,t2,t3,t4,t5,t6,t7,t8]
 global Task_Mode_Flag
 global a
+a=0x05
+global b
 clock = time.clock()
-
+global state_stopsending
+state_stopsending=0
 while(True):
+    flag=0
+    debug_flag = 0
     if uart.any():
         a = int(uart.read(1)[0])
         led.on()
+        state_stopsending=1
+        b=0
     else:
-        a=9
+        pass
     Task_Mode_Flag=Switch_TaskMode(a)
+    Task_Mode_Flag=2
     clock.tick()
-    z = sensor.snapshot().lens_corr(strength = 1.8, zoom = 1.0).replace(hmirror=True,vflip=True,transpose=False).rotation_corr(corners=[(59,0),(125,0),(160,90),(0,90)])
+    z = sensor.snapshot().lens_corr(strength = 1.8, zoom = 1.0).\
+        replace(hmirror=True,vflip=True,transpose=False).\
+        rotation_corr(corners=[(36,0),(124,0),(160,120),(0,120)])
+
     if Task_Mode_Flag==1:
         data=Detection_for_Stop(t_All,z)
     elif Task_Mode_Flag==2:
         data=Detection_for_Selected(a,z,t_All)
+
+        ledR.on()
     elif Task_Mode_Flag==3:
         data=Detection_for_LR(a-16,z,t_All)
+
     else:
         data=0
     #a=0x00
     #[a,detectR,detectL]=detection(t1,t2,t3,t4,t5,t6,t7,t8,z)
     #LR=Detection_for_LR(a-16,z,t_All)
-    if data and data!=0:
+    if state_stopsending and data and data!=0:
+        flag=data
         packdata(data,uart)
-        data=0    
-    print(Task_Mode_Flag,data,clock.fps())
+        #data=0
+        state_stopsending=0
+        ledG.on()
+    print("state:",state_stopsending,"flag:",Task_Mode_Flag,"data:",data,clock.fps())

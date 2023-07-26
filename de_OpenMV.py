@@ -1,8 +1,7 @@
-'''
-FilePath: de.py
-'''
 import time, sensor, image,pyb
 from image import SEARCH_EX, SEARCH_DS
+global q
+q = 0
 def judge(t,img,probability):
     if img.width()>=t.width() and img.height()>=t.height():
         r = img.find_template(t,probability, step=2, search=SEARCH_EX)
@@ -11,18 +10,18 @@ def judge(t,img,probability):
     return r
 def detection(t1,t2,t3,t4,t5,t6,t7,t8,img):
     r1=judge(t1,img,0.75)
-    r2=judge(t2,img,0.7)
-    r3=judge(t3,img,0.7)
-    r4=judge(t4,img,0.7)
-    r5=judge(t5,img,0.65)
-    r6=judge(t6,img,0.7)
-    r7=judge(t7,img,0.7)
-    r8=judge(t8,img,0.7)
+    r2=judge(t2,img,0.3)
+    r3=judge(t3,img,0.3)
+    r4=judge(t4,img,0.3)
+    r5=judge(t5,img,0.3)
+    r6=judge(t6,img,0.3)
+    r7=judge(t7,img,0.3)
+    r8=judge(t8,img,0.3)
     zx=[0,0,0,0,0,0,0,0]
     zm=[120,120,120,120,120,120,120,120]
     t=0x00
     if r1:
-        if img.get_pixel(r1[0]+r1[2]-3,r1[1]+r1[3]-8)<=60:
+        if img.statistics().median()>120:
             img.draw_rectangle(r1)
             t|=0x01
             zx[0]=r1[0]
@@ -72,13 +71,14 @@ def Switch_TaskMode(Received_Bytes):
         return 2
     elif Received_Bytes>0x09:
         return 3
+
 def Detection_for_Stop(t_All,Img_Test):
     r=[0,0,0,0,0,0,0,0]
     rindex=[0,0,0,0,0,0,0,0]
     count=0
     r[0]=judge(t_All[0],Img_Test,0.7)
     r[1]=judge(t_All[1],Img_Test,0.7)
-    r[2]=judge(t_All[2],Img_Test,0.7)
+    r[2]=judge(t_All[2],Img_Test,0.5)
     r[3]=judge(t_All[3],Img_Test,0.7)
     r[4]=judge(t_All[4],Img_Test,0.7)
     r[5]=judge(t_All[5],Img_Test,0.7)
@@ -92,22 +92,35 @@ def Detection_for_Stop(t_All,Img_Test):
             pass
     if r[0] and Img_Test.get_pixel(r[0][0]+r[0][2]-5,r[0][1]+r[0][3]-8)>60:
         count-=1
+    if count>1:
+        print("more")
     if count==1:
+
         return (rindex.index(max(rindex))+1)
     else:
         return 0
 def Detection_for_Selected(Received_Bytes,img,t):
-    bf=judge(t[Received_Bytes-1],img,0.7)
+
+    pro=0.5
+    bf= judge(t[Received_Bytes-1],img,pro)
     if bf:
-        img.draw_rectangle(bf)
-        return Received_Bytes
+       q=bf[0]+bf[2]/2
+       #print(q)
+       img.draw_rectangle(bf)
+       if q<=80:
+           return 1
+       else:
+           return 2
     else:
         return 0
 def Detection_for_LR(Received_Bytes,img,t):
-    bf= judge(t[Received_Bytes-1],img,0.7)
+    pro=0.7
+    bf= judge(t[Received_Bytes-1],img,pro)
     if bf:
+
        q=bf[0]+bf[2]/2
        img.draw_rectangle(bf)
+       print(q)
        if q<=80:
            return 1
        else:
