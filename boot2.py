@@ -29,57 +29,53 @@ def Detection_for_Stop(a,code,Img_Test):
             count+=1
             a = Img_Test.draw_rectangle(Content.rect(),(0,255,0),2)
             lcd.draw_string(Content.x()+45, Content.y()-5, labels[Content.classid()]+" "+'%.2f'%Content.value(), lcd.WHITE,lcd.GREEN)
-            a = lcd.display(Img_Test.replace(hmirror=True,vflip=True))
+            a = lcd.display(img)
     else:
-        a = lcd.display(Img_Test.replace(hmirror=True,vflip=True))
+        a = lcd.display(img)
         return 0
     if count==1:
         return labels[Content.classid()]
     else:
         return 0
 def Detection_for_Selected(a,Received_Bytes,img,code):
-    print(Received_Bytes)
     if code:
         for Content in code :
-            if Received_Bytes==labels[Content.classid()][1]:
+            if Received_Bytes==labels[Content.classid()]:
                 a = img.draw_rectangle(Content.rect(),(0,255,0),2)
                 lcd.draw_string(Content.x()+45, Content.y()-5, labels[Content.classid()]+" "+'%.2f'%Content.value(), lcd.WHITE,lcd.GREEN)
-                a = lcd.display(img.replace(hmirror=True,vflip=True))
+                a = lcd.display(img)
 
                 return Received_Bytes
     else:
-        a = lcd.display(img.replace(hmirror=True,vflip=True))
+        a = lcd.display(img)
         return 0
 def Detection_for_LR(a,Received_Bytes,img,t):
     if code:
         for Content in code :
-            if Received_Bytes==labels[Content.classid()][1]:
+            if Received_Bytes==labels[Content.classid()]:
                 a = img.draw_rectangle(Content.rect(),(0,255,0),2)
-                a = lcd.display(img.replace(hmirror=True,vflip=True))
+                a = lcd.display(img)
                 lcd.draw_string(Content.x()+45, Content.y()-5, labels[Content.classid()]+" "+'%.2f'%Content.value(), lcd.WHITE,lcd.GREEN)
                 if Content.x()+Content.w()/2<=160:
                     return 1
                 else:
                     return 2
     else:
-        a = lcd.display(img.replace(hmirror=True,vflip=True))
+        a = lcd.display(img)
         return 0
 #---
-fm.register(8,fm.fpioa.UART2_TX)
-fm.register(6,fm.fpioa.UART2_RX)
+fm.register(6,fm.fpioa.UART2_TX)
+fm.register(8,fm.fpioa.UART2_RX)
 fm.register(28, fm.fpioa.GPIO0)
-global uart_A
-global stop_sending
-stop_sending=1
-uart_A = UART(UART.UART2, 115200, 8, None, 1, timeout=2000, read_buf_len=4096)
+uart_A = UART(UART.UART2, 115200, 8, None, 1, timeout=1000, read_buf_len=4096)
 write_str = 'get dat\r\n'
 lcd.init()
 sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
 sensor.set_framesize(sensor.QVGA)
 sensor.set_windowing((224, 224))
-sensor.set_hmirror(0)
-sensor.set_vflip(0)
+sensor.set_hmirror(1)
+sensor.set_vflip(1)
 sensor.run(1)
 task = kpu.load("/sd/yolov2.kmodel")
 f=open("anchors.txt","r")
@@ -96,10 +92,9 @@ labels = labels_txt.split(",")
 f.close()
 while(True):
     img = sensor.snapshot()
-
     code = kpu.run_yolo2(task, img)
     Read_Buffer=uart_A.read(1)
-    print(Read_Buffer)
+
     if Read_Buffer:
         print(Read_Buffer[0])
         TaskMode =Switch_TaskMode(Read_Buffer[0])
@@ -110,12 +105,7 @@ while(True):
         flag=Detection_for_Stop(a,code,img)
     elif TaskMode==2:
         flag=Detection_for_Selected(a,Read_Buffer[0],img,code)
-        stop_sending=1
     else:
         flag=Detection_for_LR(a,Read_Buffer[0]-16,img,code)
-        stop_sending=1
-    if flag and flag!=0 and stop_sending:
-        stop_sending=0
-        #packdata(flag,uart_A)
-        flag=0
+    packdata(flag,uart_A)
 a = kpu.deinit(task)
